@@ -10,6 +10,8 @@ import os.path
 
 # This is an update to view.py
 
+#This edit is changes for AWS #1
+
 #--------------------------------------------------------------------------------------------------------------------
 #               Issues to be fixed
 #1)Health Concerns Sample1 : Capitalization issue w/  goals  s -> S difference
