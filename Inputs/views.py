@@ -8,6 +8,8 @@ from django.core.files.storage import FileSystemStorage
 import xml.etree.ElementTree as ET
 import os.path
 
+# This is an update to view.py
+
 #--------------------------------------------------------------------------------------------------------------------
 #               Issues to be fixed
 #1)Health Concerns Sample1 : Capitalization issue w/  goals  s -> S difference
