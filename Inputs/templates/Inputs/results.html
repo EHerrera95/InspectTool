@@ -1,0 +1,123 @@
+{% extends 'Inputs/layout.html' %}
+
+{% block body %}
+    <h2 style="font-style: italic">Results Page</h2>
+    <h3 style="text-decoration: underline;">Inputs Table</h3>
+    <table class="table">
+        <thead>
+            <tr>    
+                <th>Criteria</th>
+                <th>Uploaded File</th>
+            </tr>
+        </thead>
+        <tbody
+        {% for upload in uploads %}
+            <tr>
+                <td>{{ upload.criteria }}</td>
+                <td>
+                    {{ upload.filename }}
+                    <a href="{{ upload.filename.url }}" class="btn btn-primary btn-sm" target="_blank">
+                        Download File
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </br>
+    <h3 style="text-decoration: underline;">Variables Set Table</h3></h2>
+    <table class="table">  
+        {% for v in vars %}
+            <tr>
+                <th>Assessment OID</th>
+                <td>{{ v.assessment }}</td>
+            </tr>
+            <tr>
+                <th>Assessment Text</th>
+                <td>{{ v.assessment_txt }}</td>
+            </tr>           
+            <tr>                 
+                <th>Goals OID</th>
+                <td>{{ v.goals }}</td>
+            </tr>      
+            <tr>                 
+                <th>Goals Text</th>
+                <td>{{ v.goals_txt }}</td>
+            </tr>
+            <tr>                
+                <th>Health Concerns OID</th>
+                <td>{{ v.health_concerns }}</td>
+            </tr>
+            <tr>
+                <th>Health Concerns Text</th>
+                <td>{{ v.health_concerns_txt }}</td>           
+            </tr>                    
+            <tr>
+                <th>Plan of Treatment OID</th>
+                <td>{{ v.plan_of_treatment }}</td>
+            </tr>                    
+            <tr>
+                <th>Plan of Treatment Text</th>
+                <td>{{ v.plan_of_treatment_txt }}</td>
+            </tr>               
+            <tr>
+                <th>Reason for Referral OID</th>
+                <td>{{ v.reason_for_referral }}</td>
+            </tr>
+            <tr>                    
+                <th>Reason for Referral Text</th>            
+                <td>{{ v.reason_for_referral_txt }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </br>
+    <h3 style="text-decoration: underline;">Results Table</h3>
+    <table class="table">
+        {% for r in results %}
+            <tr>
+                <th>Assessment Results</th>
+                <td>{{ r.assessment_results }}</td>
+            </tr>
+            <tr>
+                <th>Assessment Text Results</th>
+                <td>{{ r.assessment_txt_results }}</td>           
+            </tr>
+            <tr>
+                <th>Goals Results</th>
+                <td>{{ r.goals_results }}</td>
+            </tr>
+            <tr>
+                <th>Goals Text Results</th>
+                <td>{{ r.goals_txt_results }}</td>
+            </tr>
+            <tr>
+                <th>Health Concerns Results</th>
+                <td>{{ r.health_concerns_results }}</td>
+            </tr>
+            <tr>
+                <th>Health Concerns Text Results</th>
+                <td>{{ r.health_concerns_txt_results }}</td>
+            </tr>
+            <tr>
+                <th>Plan of Treatment Results</th>
+                <td>{{ r.plan_of_treatment_results }}</td>
+            </tr>                  
+            <tr>
+                <th>Plan of Treatment Text Results</th>
+                <td>{{ r.plan_of_treatment_txt_results }}</td>
+            </tr>                
+                <th>Reason for Referral Results</th>
+                <td>{{ r.reason_for_referral_results }}</td>
+            </tr>
+            </tr>              
+                <th>Reason for Referral Text Results</th>
+                <td>{{ r.reason_for_referral_txt_results }}</td>
+            </tr>
+        {% endfor%}
+    </table>
+    </br>
+    <button>
+        <a href="{% url 'inputs' %}">Back to Home</a>
+    </button>
+
+{% endblock %}

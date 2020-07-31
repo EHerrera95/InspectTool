@@ -1,0 +1,23 @@
+{% extends 'Inputs/layout.html' %}
+
+{% block body %}
+    <h2 style="font-style: italic">Instructions:</h2>
+    <ol>
+        <li>Select the criteria to visually inspect</li>
+        <li>Upload CCDA file (.xml)</li>
+        <li>Click "Start Inspection"</li>
+    </ol>
+
+
+    <h2 style="font-style: italic">Inputs:</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="btn btn-primary">Start Inspection</button>
+    </form>
+
+    <form>
+        {{ testform.as_p }}
+    </form>
+{% endblock %}
+
