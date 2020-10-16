@@ -1,20 +1,17 @@
 from django.shortcuts import redirect, render, reverse
 
 from .forms import InputForm
-from .models import InputModel, VariableSet, ResultSet
+from .models import InputModel, VariableSet, LookupSet
 from django.core.files.storage import FileSystemStorage
 
 
 import xml.etree.ElementTree as ET
 import os.path
 
-# This is an update to view.py
-
 #--------------------------------------------------------------------------------------------------------------------
 #               Issues to be fixed
-#1)Health Concerns Sample1 : Capitalization issue w/  goals  s -> S difference
-#2)Goals_txt, HC_txt & POT_txt for Sample 1
-#3)Validation for 
+#1) Edit Results Table to Output text found in the XML , no more PASS/FAIL
+#   - 
 #--------------------------------------------------------------------------------------------------------------------
 #               Things to do
 #1)Test on AWS servers
@@ -27,7 +24,6 @@ import os.path
 #   - Proctors have report to download quickly
 #5)Build out rest of criteria/Cures updates
 #--------------------------------------------------------------------------------------------------------------------
-
 
 # Create your views here.
 def inputs(request):
@@ -46,7 +42,7 @@ def inputs(request):
 def results(request):
     uploads = InputModel.objects.all()
     v = VariableSet.objects.all()
-    r = ResultSet.objects.all()
+    l = LookupSet.objects.all()
 
     crit = uploads[0].criteria
 
@@ -64,34 +60,25 @@ def results(request):
     return render(request, "Inputs/results.html", {
         'uploads': uploads,
         'vars': v,
-        'results': r
+        'lookup' : l
     })
 
 
+#Set appropriate variables based on criteria selected by proctor
 def defineVars(crit):
     VariableSet.objects.all().delete()
-    if crit == "2015E_b1_Amb_Sample1_CCD" or crit == "2015E_b1_Amb_Sample1_RN":
-        if crit == "2015E_b1_Amb_Sample1_RN":
+    if crit == "2015E_b1_Amb_Sample1_CCD" or crit == "2015E_b1_Amb_Sample1_RN" or crit == "2015E_b1_Amb_Sample2_CCD" or  crit == "2015E_b1_Amb_Sample2_RN":
+        if crit == "2015E_b1_Amb_Sample1_RN" or crit =="2015E_b1_Amb_Sample2_RN":
             reason_for_referral = "42349-1"
-            reason_for_referral_txt = "Ms Alice Newman is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia."
         else:
             reason_for_referral = "N/A"
-            reason_for_referral_txt = "N/A"
-        v = VariableSet(assessment = '51848-0', assessment_txt = "The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.", goals = '61146-7',goals_txt = "Get rid of intermittent fever that is occurring every few weeks. Need to gain more energy to do regular activities", health_concerns = '75310-3',health_concerns_txt = "a. Chronic Sickness exhibited by patient. HealthCare Concerns refer to underlying clinical facts i. Documented HyperTension problem ii. Documented HypoThyroidism problem iii. Watch Weight of patient", plan_of_treatment = '18776-5' ,plan_of_treatment_txt = "i. Get an EKG done on 6/23/2015. ii. Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure. iii. Take Clindamycin 300mg three times a day as needed if pain does not subside iv. Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015.", reason_for_referral = reason_for_referral, reason_for_referral_txt = reason_for_referral_txt )
-        v.save()
-    elif crit == "2015E_b1_Amb_Sample2_CCD" or  crit == "2015E_b1_Amb_Sample2_RN":
-        if crit == "2015E_b1_Amb_Sample2_RN":
-            reason_for_referral = "42349-1"
-            reason_for_referral_txt = "N/A"
-        else:
-            reason_for_referral = "N/A"
-            reason_for_referral_txt = "N/A"
-        v = VariableSet(assessment = '51848-0', assessment_txt = "The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.", goals = '61146-7',goals_txt = "N/A", health_concerns = '75310-3',health_concerns_txt = "N/A", plan_of_treatment = '18776-5' ,plan_of_treatment_txt = "Schedule a visit for next year", reason_for_referral = reason_for_referral, reason_for_referral_txt = reason_for_referral_txt )
+        v = VariableSet(assessment = '51848-0', goals = '61146-7', plan_of_treatment="18776-5", health_concerns="75310-3",reason_for_referral = reason_for_referral, functional_status="47420-5", cognitive_status="10190-7")
         v.save()
     else:
         print("ERROR")
 
 
+#Start Valiadtion
 def startvalidation(v, filepath):
     #Start of XPath code
     tree = ET.parse(filepath)
@@ -101,9 +88,24 @@ def startvalidation(v, filepath):
         'cda' : 'urn:hl7-org:v3'
     }
 
+    lu_list = []
     code_list = []
+    assessment_lu="Not Found"
+    assessment_txt_lu="Not Found"
+    goals_lu="Not Found"
+    goals_txt_lu="Not Found"
+    health_concerns_lu="Not Found"
+    health_concerns_txt_lu="Not Found"
+    plan_of_treatment_lu="Not Found"
+    plan_of_treatment_txt_lu="Not Found"
+    reason_for_referral_lu="Not Found"
+    reason_for_referral_txt_lu="Not Found"
+    functional_status_lu="Not Found"
+    functional_status_txt_lu="Not Found"
+    cognitive_status_lu="Not Found"
+    cognitive_status_txt_lu="Not Found"
 
-    #Add all codes found in xml to code_list
+    #1) Add all codes found in xml to code_list
     for section in root.findall("cda:component/cda:structuredBody/cda:component/cda:section", namespace):
         #print(section)
         for tag in section:
@@ -112,100 +114,124 @@ def startvalidation(v, filepath):
                 code = tag.get('code')
                 code_list.append(code)
 
-                            
-    #Assessment
+    temp = ""    
+    #2) Assessment
     if v[0].assessment in code_list:
-        assessment_results='PASS'
-        assessment_txt_results='FAIL - CHECK CONTENTS OF XML'
+        #Correct Assessment OID was found -> Output OID found
+        assessment_lu=v[0].assessment
 
-        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].assessment}']../cda:text/cda:list//cda:paragraph//", namespace):
-            if v[0].assessment_txt in (a.text or a.tail):
-                assessment_txt_results='PASS'
-    else:
-        assessment_results='FAIL - CHECK CONTENTS OF XML'
-        assessment_txt_results='FAIL - CHECK CONTENTS OF XML'
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].assessment}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
 
-    #Goals 
-    goals2_lst = []
-    goals2 = ["Get rid of intermittent fever that is occurring every few weeks", "Need to gain more energy to do regular activities"]
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            assessment_txt_lu=temp
 
+    temp = ""
+    #3) Goals 
     if v[0].goals in code_list:
-        goals_results='PASS'
-        if v[0].goals_txt == "N/A":
-            goals_txt_results='NOT TESTED'
-        else:
-            for b in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].goals}']../cda:text//cda:paragraph", namespace):
-                goals2_lst.append(b.text)
-            for x in goals2:
-                if x not in goals2_lst:
-                    goals_txt_results='FAIL - CHECK CONTENTS OF XML'
-                elif x in goals2_lst:
-                    goals_txt_results='PASS'
-    else:
-        if v[0].goals_txt == "N/A":
-            goals_txt_results='NOT TESTED'
-            goals_results="FAIL - CHECK CONTENTS OF XML"
-        else:
-            goals_results='FAIL - CHECK CONTENTS OF XML'
-            goals_txt_results='FAIL - CHECK CONTENTS OF XML'
+        #Correct Goals OID was found -> Output OID found
+        goals_lu=v[0].goals
 
-    #Health Concerns
-    hc_lst = []
-    hc_txt_lst =['Chronic Sickness exhibited by patient','HealthCare Concerns refer to underlying clinical facts', 'Documented HyperTension problem', 'Documented HypoThyroidism problem', 'Watch Weight of patient' ]
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].goals}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
 
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            goals_txt_lu = temp
+
+
+    temp = ""
+    #4) Health Concerns 
     if v[0].health_concerns in code_list:
-        health_concerns_results='PASS'
-        health_concerns_txt_results='FAIL - CHECK CONTENTS OF XML'
-        if v[0].health_concerns_txt == "N/A":
-            health_concerns_txt_results='NOT TESTED'
-        else:
-            for c in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].health_concerns}']../cda:text//cda:td", namespace):
-                #print(c.text)
-                hc_lst.append(c.text)
-                #health_concerns_txt_results='PASS'
-            #print(hc_lst)
-            #print(hc_txt_lst)
-            for y in hc_lst:
-                if y in hc_txt_lst:
-                    health_concerns_txt_results='PASS'
-                elif y not in hc_txt_lst:
-                    health_concerns_txt_results='FAIL - CHECK CONTENTS OF XML'
-        
-        #health_concerns_txt_results='Not Tested'
-    else:
-        health_concerns_results='FAIL - CHECK CONTENTS OF XML'
-        health_concerns_txt_results='FAIL - CHECK CONTENTS OF XML'
+        #Correct Health Concerns OID was found -> Output OID found
+        health_concerns_lu=v[0].health_concerns
+
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].health_concerns}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
+
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            health_concerns_txt_lu = temp
 
 
-    #Plan of Treatmenet OID
+
+    temp = ""
+    #5) Plan of Treatment
     if v[0].plan_of_treatment in code_list:
-        plan_of_treatment_results='PASS'
-        #for d in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].plan_of_treatment}']../cda:text//cda:br", namespace):
-            #print(f"{d.text} + {d.tail}")
-        plan_of_treatment_txt_results='NOT TESTED'
+        #Correct Plan of Treatment OID was found -> Output OID found
+        plan_of_treatment_lu=v[0].plan_of_treatment
+
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].plan_of_treatment}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
+
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            plan_of_treatment_txt_lu = temp
+
+    temp = ""
+    #6) Reason for Referral (Not Required for CCDS)
+    # if v[0].reason_for_referral == "N/A":
+    #     reason_for_referral_lu= "N/A"
+    #     reason_for_referral_txt_lu= "N/A"
+
+    if v[0].reason_for_referral in code_list:
+        #Correct Reason for Referral OID was found -> Output OID found
+        reason_for_referral_lu=v[0].reason_for_referral
+
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].reason_for_referral}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
+
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            reason_for_referral_txt_lu = temp
     else:
-        plan_of_treatment_results='FAIL - CHECK CONTENTS OF XML'
-        plan_of_treatment_txt_results='FAIL - CHECK CONTENTS OF XML'
+        print("TO BE CODED")    
 
-    if v[0].reason_for_referral == "N/A":
-        reason_for_referral_results='NOT TESTED'
-        reason_for_referral_txt_results='NOT TESTED'
-    elif v[0].reason_for_referral in code_list:
-        reason_for_referral_results='PASS'
-        if v[0].reason_for_referral_txt == "N/A":
-            reason_for_referral_txt_results="NOT TESTED"
-        else:
-            for e in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].reason_for_referral}']../cda:text//cda:paragraph", namespace):
-                if e.text in v[0].reason_for_referral_txt:
-                    #print(e.text)
-                    reason_for_referral_txt_results='PASS'
+    temp = ""
+    #7) Functional Status
+    if v[0].functional_status in code_list:
+        #Correct Functional Status OID was found -> Output OID found
+        functional_status_lu=v[0].functional_status
+
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].functional_status}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
+
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            functional_status_txt_lu = temp
     else:
-        reason_for_referral_results='FAIL - CHECK CONTENTS OF XML'        
-        reason_for_referral_txt_results='FAIL - CHECK CONTENTS OF XML'
+        print("TO BE CODED")   
 
+    temp = ""
+    #8) Cognitive Status
+    if v[0].cognitive_status in code_list:
+        #Correct Cognitive Status OID was found -> Output OID found
+        cognitive_status_lu=v[0].cognitive_status
 
-    
-    ResultSet.objects.all().delete()
-    r = ResultSet(assessment_results=assessment_results, assessment_txt_results=assessment_txt_results, goals_results=goals_results, goals_txt_results=goals_txt_results,health_concerns_results=health_concerns_results, health_concerns_txt_results=health_concerns_txt_results,plan_of_treatment_results=plan_of_treatment_results, plan_of_treatment_txt_results=plan_of_treatment_txt_results,reason_for_referral_results=reason_for_referral_results, reason_for_referral_txt_results=reason_for_referral_txt_results)
-    r.save()
+        for a in root.findall(f"cda:component/cda:structuredBody/cda:component/cda:section/cda:code[@code='{v[0].cognitive_status}']../cda:text//", namespace):
+            lu_list.clear()
+            if (a.text != None and a.text != ""):
+                lu_list.append(a.text)
 
+            for u in lu_list:
+                temp = temp + "  " + u + " |"
+            cognitive_status_txt_lu = temp
+    else:
+        print("TO BE CODED")  
+
+    LookupSet.objects.all().delete()
+    l = LookupSet(assessment_lu=assessment_lu, assessment_txt_lu=assessment_txt_lu,goals_lu=goals_lu,goals_txt_lu=goals_txt_lu, health_concerns_lu=health_concerns_lu,health_concerns_txt_lu=health_concerns_txt_lu, plan_of_treatment_lu=plan_of_treatment_lu, plan_of_treatment_txt_lu=plan_of_treatment_txt_lu,reason_for_referral_lu=reason_for_referral_lu,reason_for_referral_txt_lu=reason_for_referral_txt_lu, functional_status_lu=functional_status_lu,functional_status_txt_lu=functional_status_txt_lu,cognitive_status_lu=cognitive_status_lu, cognitive_status_txt_lu=cognitive_status_txt_lu)
+    l.save()

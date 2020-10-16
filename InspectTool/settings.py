@@ -25,7 +25,7 @@ SECRET_KEY = 'xlhlnx%)j0g3^macdn$9q+cd!=&7vba1lmblzj+o%ott#w)l*a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['inspecttool-env.eba-rt9yr5kg.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition

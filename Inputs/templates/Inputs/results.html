@@ -1,117 +1,51 @@
 {% extends 'Inputs/layout.html' %}
 
 {% block body %}
-    <h2 style="font-style: italic">Results Page</h2>
-    <h3 style="text-decoration: underline;">Inputs Table</h3>
+    <h2 style="font-style: italic; text-decoration:underline">Results</h2>
+
     <table class="table">
-        <thead>
-            <tr>    
-                <th>Criteria</th>
-                <th>Uploaded File</th>
-            </tr>
-        </thead>
-        <tbody
-        {% for upload in uploads %}
+        {% for l in lookup %}
+            {% for u in uploads %}
             <tr>
-                <td>{{ upload.criteria }}</td>
-                <td>
-                    {{ upload.filename }}
-                    <a href="{{ upload.filename.url }}" class="btn btn-primary btn-sm" target="_blank">
-                        Download File
-                    </a>
-                </td>
+                <th style="text-align: center;"><i>{{u.criteria}}</i> </th>
+                <th>OID Found</th>
+                <th>Text Data Found</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </br>
-    <h3 style="text-decoration: underline;">Variables Set Table</h3></h2>
-    <table class="table">  
-        {% for v in vars %}
+            {% endfor %}
             <tr>
-                <th>Assessment OID</th>
-                <td>{{ v.assessment }}</td>
+                <th>Assessment:</th>
+                <td>{{ l.assessment_lu }}</td>
+                <td>{{ l.assessment_txt_lu }}</td>
+            </tr>
+
+            <tr>
+                <th>Goals:</th>
+                <td>{{ l.goals_lu }}</td>
+                <td>{{ l.goals_txt_lu }}</td>
             </tr>
             <tr>
-                <th>Assessment Text</th>
-                <td>{{ v.assessment_txt }}</td>
-            </tr>           
-            <tr>                 
-                <th>Goals OID</th>
-                <td>{{ v.goals }}</td>
-            </tr>      
-            <tr>                 
-                <th>Goals Text</th>
-                <td>{{ v.goals_txt }}</td>
-            </tr>
-            <tr>                
-                <th>Health Concerns OID</th>
-                <td>{{ v.health_concerns }}</td>
+                <th>Health Concerns:</th>
+                <td>{{ l.health_concerns_lu }}</td>
+                <td>{{ l.health_concerns_txt_lu }}</td>
             </tr>
             <tr>
-                <th>Health Concerns Text</th>
-                <td>{{ v.health_concerns_txt }}</td>           
-            </tr>                    
-            <tr>
-                <th>Plan of Treatment OID</th>
-                <td>{{ v.plan_of_treatment }}</td>
-            </tr>                    
-            <tr>
-                <th>Plan of Treatment Text</th>
-                <td>{{ v.plan_of_treatment_txt }}</td>
-            </tr>               
-            <tr>
-                <th>Reason for Referral OID</th>
-                <td>{{ v.reason_for_referral }}</td>
+                <th>Plan of Treatment:</th>
+                <td>{{ l.plan_of_treatment_lu }}</td>
+                <td>{{ l.plan_of_treatment_txt_lu }}</td>
+            </tr>                              
+                <th>Reason for Referral:</th>
+                <td>{{ l.reason_for_referral_lu }}</td>
+                <td>{{ l.reason_for_referral_txt_lu }}</td>
             </tr>
-            <tr>                    
-                <th>Reason for Referral Text</th>            
-                <td>{{ v.reason_for_referral_txt }}</td>
+            </tr>                              
+                <th>Functional Status:</th>
+                <td>{{ l.functional_status_lu }}</td>
+                <td>{{ l.functional_status_txt_lu }}</td>
             </tr>
-        {% endfor %}
-    </table>
-    </br>
-    <h3 style="text-decoration: underline;">Results Table</h3>
-    <table class="table">
-        {% for r in results %}
-            <tr>
-                <th>Assessment Results</th>
-                <td>{{ r.assessment_results }}</td>
-            </tr>
-            <tr>
-                <th>Assessment Text Results</th>
-                <td>{{ r.assessment_txt_results }}</td>           
-            </tr>
-            <tr>
-                <th>Goals Results</th>
-                <td>{{ r.goals_results }}</td>
-            </tr>
-            <tr>
-                <th>Goals Text Results</th>
-                <td>{{ r.goals_txt_results }}</td>
-            </tr>
-            <tr>
-                <th>Health Concerns Results</th>
-                <td>{{ r.health_concerns_results }}</td>
-            </tr>
-            <tr>
-                <th>Health Concerns Text Results</th>
-                <td>{{ r.health_concerns_txt_results }}</td>
-            </tr>
-            <tr>
-                <th>Plan of Treatment Results</th>
-                <td>{{ r.plan_of_treatment_results }}</td>
-            </tr>                  
-            <tr>
-                <th>Plan of Treatment Text Results</th>
-                <td>{{ r.plan_of_treatment_txt_results }}</td>
-            </tr>                
-                <th>Reason for Referral Results</th>
-                <td>{{ r.reason_for_referral_results }}</td>
-            </tr>
-            </tr>              
-                <th>Reason for Referral Text Results</th>
-                <td>{{ r.reason_for_referral_txt_results }}</td>
+            </tr>                              
+                <th>Cognitive Status:</th>
+                <td>{{ l.cognitive_status_lu }}</td>
+                <td>{{ l.cognitive_status_txt_lu }}</td>
             </tr>
         {% endfor%}
     </table>
