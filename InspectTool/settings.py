@@ -23,11 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xlhlnx%)j0g3^macdn$9q+cd!=&7vba1lmblzj+o%ott#w)l*a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['VIT-env.eba-hpwpfedm.us-west-2.elasticbeanstalk.com']
 
-
+#'toolenv.eba-u6vimmv4.us-west-2.elasticbeanstalk.com'
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,8 +78,12 @@ WSGI_APPLICATION = 'InspectTool.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tooldb1',
+        'USER': 'ericherrera',
+        'PASSWORD': 'Miles21!',
+        'HOST' : 'database-1.cseix1ts1l09.us-west-2.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 

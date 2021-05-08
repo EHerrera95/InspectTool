@@ -1,57 +1,41 @@
 {% extends 'Inputs/layout.html' %}
 
 {% block body %}
-    <h2 style="font-style: italic; text-decoration:underline">Results</h2>
+    {% for u in uploads %}
+    <h2 style="text-decoration:underline">Results: {{u.criteria}}</h2>
+    {% endfor %}
 
-    <table class="table">
-        {% for l in lookup %}
-            {% for u in uploads %}
+    <table class="table" style="width:100%">
+        <colgroup>
+            <col span="1" style="width: 7%;">
+            <col span="1" style="width: 5%;">
+            <col span="1" style="width: 82%;"> 
+        </colgroup>
+        <tbody>
             <tr>
-                <th style="text-align: center;"><i>{{u.criteria}}</i> </th>
+                <th style="text-align: center;">Section Name </th>
                 <th>OID Found</th>
                 <th>Text Data Found</th>
             </tr>
+            {% for oid_name, value in validation.final_dict.items %}
+                <tr>
+                    <th><i></i>{{ oid_name}} </th>
+                    <td> {{ value.OID }} </td>
+                    {% if value.txt == null or value.txt == "" %}
+                        <td> Nothing Found </td>
+                    {% else%}
+                        <td> {{ value.txt }} </td>
+                    {% endif %}
+                </tr>
             {% endfor %}
-            <tr>
-                <th>Assessment:</th>
-                <td>{{ l.assessment_lu }}</td>
-                <td>{{ l.assessment_txt_lu }}</td>
-            </tr>
-
-            <tr>
-                <th>Goals:</th>
-                <td>{{ l.goals_lu }}</td>
-                <td>{{ l.goals_txt_lu }}</td>
-            </tr>
-            <tr>
-                <th>Health Concerns:</th>
-                <td>{{ l.health_concerns_lu }}</td>
-                <td>{{ l.health_concerns_txt_lu }}</td>
-            </tr>
-            <tr>
-                <th>Plan of Treatment:</th>
-                <td>{{ l.plan_of_treatment_lu }}</td>
-                <td>{{ l.plan_of_treatment_txt_lu }}</td>
-            </tr>                              
-                <th>Reason for Referral:</th>
-                <td>{{ l.reason_for_referral_lu }}</td>
-                <td>{{ l.reason_for_referral_txt_lu }}</td>
-            </tr>
-            </tr>                              
-                <th>Functional Status:</th>
-                <td>{{ l.functional_status_lu }}</td>
-                <td>{{ l.functional_status_txt_lu }}</td>
-            </tr>
-            </tr>                              
-                <th>Cognitive Status:</th>
-                <td>{{ l.cognitive_status_lu }}</td>
-                <td>{{ l.cognitive_status_txt_lu }}</td>
-            </tr>
-        {% endfor%}
+        </tbody>
     </table>
+
     </br>
+
     <button>
         <a href="{% url 'inputs' %}">Back to Home</a>
     </button>
+    </br>
 
 {% endblock %}
