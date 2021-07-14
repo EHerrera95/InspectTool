@@ -14,10 +14,18 @@
         <tbody>
             <tr>
                 <th style="text-align: center;">Section Name </th>
-                <th>OID Found</th>
+                <th>LOINC Found</th>
                 <th>Text Data Found</th>
             </tr>
             {% for oid_name, value in validation.final_dict.items %}
+                {% comment %} {% if oid_name == "Assessment and Plan" and value.OID != "Nothing Found" %}
+                <tr>
+                    <th><i></i>{{ oid_name}} </th>
+                    <td> {{ value.OID }} </td>
+                    <td> {{ value.txt }} </td>
+                </tr>
+                {% endif %} {% endcomment %}
+
                 <tr>
                     <th><i></i>{{ oid_name}} </th>
                     <td> {{ value.OID }} </td>
@@ -26,7 +34,8 @@
                     {% else%}
                         <td> {{ value.txt }} </td>
                     {% endif %}
-                </tr>
+                </tr> 
+
             {% endfor %}
         </tbody>
     </table>
