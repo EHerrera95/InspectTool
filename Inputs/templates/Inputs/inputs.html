@@ -1,23 +1,173 @@
 {% extends 'Inputs/layout.html' %}
 
-{% block body %}
-    <h2 style="font-style: italic">Instructions:</h2>
-    <ol>
-        <li>Select the criteria to visually inspect</li>
-        <li>Upload CCDA file (.xml)</li>
-        <li>Click "Start Inspection"</li>
-    </ol>
-
-
-    <h2 style="font-style: italic">Inputs:</h2>
+{% block content %}
+<br>
+<div class="inputs-page">
+    <h2>Inputs:</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p}}
-        <button type="submit" class="btn btn-primary">Start Inspection</button>
+        <p>{{form.criteria.label }}: {{ form.criteria}}</p>
+        <p>{{form.filename.label}}: {{ form.filename}}</p>
+        <br>
+        <div class="inputs-button">
+            <button type="submit" class="btn btn-primary">
+                <a>Start Inspection</a>
+            </button>
+        </div>
     </form>
-
-    <form>
-        {{ testform.as_p }}
-    </form>
+</div>
+<table class="criteria-table">
+    <thead>
+        <tr>
+            <th>ONC Criteria</th>
+            <th>Scenario</th>
+            <th>Test Data</th>
+            <th>Patient Names</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="ONC-criteria" rowspan=6>(b)(1): Transitions of Care</td>
+            <td rowspan=3>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD, RN)</td>
+            <td>Alice Newman</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD, RN)</td>
+            <td>Jeremy Bates</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD, RN)</td>
+            <td>Happy Kid</td>
+        </tr>
+        <tr>
+            <td rowspan=3>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD, RN, DS)</td>
+            <td>Rebecca Larson</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD, RN, DS)</td>
+            <td>John Wright</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD, RN, DS)</td>
+            <td>Jane Clarkson</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria"  rowspan=4>(b)(2): Clinical Information Reconciliation</td>
+            <td rowspan=3>Ambulatory</td>
+            <td>Sample 1: R1.1 - (CCD)</td>
+            <td>Myra Jones</td>
+        </tr>
+        <tr>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Susan Turner</td>
+        </tr>
+        <tr>
+            <td>Sample 1: R2.1 - (RN)</td>
+            <td>Cecilia Cummings</td>
+        </tr>
+        <tr>
+            <td>Inpatient</td>
+            <td>Sample 1: R2.1 - (DS)</td>
+            <td>Lauren Walker</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria"  rowspan=4>(b)(6): Data Export</td>
+            <td rowspan=2>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Alice Newman</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>Jeremy Bates</td>
+        </tr>
+        <tr>
+            <td style="background-color: #e8dccc" rowspan=2>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Rebecca Larson</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>John Wright</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria"  rowspan=2>(b)(7): Data Segmentation for Privacy - Send</td>
+            <td>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Alice Newman</td>
+        </tr>
+        <tr>
+            <td>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Rebecca Larson</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria" rowspan=2>(b)(9): Care Plan</td>
+            <td>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Karen McKiney</td>
+        </tr>
+        <tr>
+            <td>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Sandra Glazer</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria"  rowspan=6>(e)(1): View/Download/Transmit</td>
+            <td rowspan=3>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Alice Newman</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>Jeremy Bates</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD)</td>
+            <td>Happy Kid</td>
+        </tr>
+        <tr>
+            <td rowspan=3>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Rebecca Larson</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>John Wright</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD)</td>
+            <td>Jane Clarkson</td>
+        </tr>
+        <tr>
+            <td class="ONC-criteria"  rowspan=6>(g)(9): Application Access - All Data Request</td>
+            <td rowspan=3>Ambulatory</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Alice Newman</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>Jeremy Bates</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD)</td>
+            <td>Happy Kid</td>
+        </tr>
+        <tr>
+            <td rowspan=3>Inpatient</td>
+            <td>Sample 1: R2.1 - (CCD)</td>
+            <td>Rebecca Larson</td>
+        </tr>
+        <tr>
+            <td>Sample 2: R2.1 - (CCD)</td>
+            <td>John Wright</td>
+        </tr>
+        <tr>
+            <td>Sample 3: R2.1 - (CCD)</td>
+            <td>Jane Clarkson</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
 

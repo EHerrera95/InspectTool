@@ -1,31 +1,19 @@
 {% extends 'Inputs/layout.html' %}
 
-{% block body %}
+{% block content %}
     {% for u in uploads %}
-    <h2 style="text-decoration:underline">Results: {{u.criteria}}</h2>
+    <h2 class="results-header">Results for {{u.criteria}}</h2>
     {% endfor %}
-
-    <table class="table" style="width:100%">
-        <colgroup>
-            <col span="1" style="width: 7%;">
-            <col span="1" style="width: 5%;">
-            <col span="1" style="width: 82%;"> 
-        </colgroup>
-        <tbody>
+    <table class="results-table">
+        <thead>
             <tr>
-                <th style="text-align: center;">Section Name </th>
+                <th>Section Name </th>
                 <th>LOINC Found</th>
-                <th>Text Data Found</th>
+                <th style="text-align:left">Text Data Found</th>
             </tr>
+        </thead>
+        <tbody>
             {% for oid_name, value in validation.final_dict.items %}
-                {% comment %} {% if oid_name == "Assessment and Plan" and value.OID != "Nothing Found" %}
-                <tr>
-                    <th><i></i>{{ oid_name}} </th>
-                    <td> {{ value.OID }} </td>
-                    <td> {{ value.txt }} </td>
-                </tr>
-                {% endif %} {% endcomment %}
-
                 <tr>
                     <th><i></i>{{ oid_name}} </th>
                     <td> {{ value.OID }} </td>
@@ -35,16 +23,13 @@
                         <td> {{ value.txt }} </td>
                     {% endif %}
                 </tr> 
-
             {% endfor %}
         </tbody>
     </table>
-
-    </br>
-
-    <button>
-        <a href="{% url 'inputs' %}">Back to Home</a>
-    </button>
-    </br>
+    <div class="results-button">
+        <button >
+            <a href="{% url 'inputs' %}">Back to Inputs</a>
+        </button>  
+    </div>
 
 {% endblock %}

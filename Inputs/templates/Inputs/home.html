@@ -1,0 +1,16 @@
+{% extends 'Inputs/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="welcome">
+    <h1>Visual Inspection Tool</h1>
+    <h2>Latest Update: 9/24/21</h2>
+        <div class="buttons">
+            <button>
+            <a href="{% url 'login' %}">Login</a>
+            </button>
+            <button class="btn">
+            <a href="{% url 'register' %}">Register</a>
+            </button>
+        </div>
+</div>
+{% endblock %}

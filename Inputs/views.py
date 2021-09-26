@@ -1,6 +1,11 @@
 from django.shortcuts import redirect, render, reverse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
-from .forms import InputForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+from .forms import InputForm, CreateUserForm
 from .models import InputModel, Validation
 from django.core.files.storage import FileSystemStorage
 
@@ -8,24 +13,52 @@ from django.core.files.storage import FileSystemStorage
 import xml.etree.ElementTree as ET
 import os.path
 
-#--------------------------------------------------------------------------------------------------------------------
-#               Issues to be fixed
-#1) Edit Results Table to Output text found in the XML , no more PASS/FAIL
-#   - 
-#--------------------------------------------------------------------------------------------------------------------
-#               Things to do
-#1)Test on AWS servers
-#2)Filepath is not xml document -> return "Upload right document"
-#   - Don't upload file when not xml
-#   - Delete file from server once complete?
-#3)Edit home screen with instructions
-#   - Last thing learn CSS to style webpage
-#4)Export Results Table into .csv or other sort of file
-#   - Proctors have report to download quickly
-#5)Build out rest of criteria/Cures updates
-#--------------------------------------------------------------------------------------------------------------------
 
 # Create your views here.
+
+
+def instructions(request):
+    return render(request, "Inputs/instructions.html")
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('inputs')
+        else:
+            messages.info(request, 'Username OR Password is incorrect')
+
+    context = {}
+    return render(request, "Inputs/login.html", context)   
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('login')
+
+    context = {'form': form}
+    return render(request, "Inputs/register.html", context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+
+def home(request):
+    return render(request, 'Inputs/home.html')
+
+@login_required(login_url='home')
 def inputs(request):
     if request.method == 'POST':
         InputModel.objects.all().delete()
@@ -39,6 +72,7 @@ def inputs(request):
         'form':form,
     })
 
+@login_required(login_url='home')
 def results(request):
     uploads = InputModel.objects.all()
     crit = uploads[0].criteria

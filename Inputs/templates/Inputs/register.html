@@ -1,0 +1,20 @@
+{% extends 'Inputs/layout.html'%}
+{% load static %}
+{% block content %}
+<div class="login">
+  <h1>Register for Visual Inspection Tool</h1>
+  <form method="post" action="">
+    {%csrf_token%}
+    <p>{{form.username}}</p>
+    <p>{{form.email}}</p>
+    <p>{{form.password1}}</p>
+    <p>{{form.password2}}</p>
+    <p class="submit" style="text-align:center"><input type="submit" name="commit" value="Register"></p>
+
+    {{form.errors}}
+    <p class="login-register">Already Registered? <a href="{% url 'login'%}">Login</a></p>
+  </form>
+  
+</div>
+
+{% endblock %}

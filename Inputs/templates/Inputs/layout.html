@@ -1,23 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Visual Inspection Tool</title>
-        <style>
-            table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            }
-            th, td {
-            padding: 5px;
-            }
-            th {
-            text-align: left;
-            }
-            </style>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
     <body>
-        <h1 style="text-align: center;">Visual Inspection Tool</h1>
-        {% block body %}
+        <div class="wrapper">
+            <nav class="navbar">
+                <img class="logo" src="{% static 'images/dglogo.png' %}">
+                <ul>
+                    <li><a class="active" href="{% url 'inputs' %}">Home</a></li>
+                    <li><a href="{% url 'instructions' %}">How It Works</a></li>
+                </ul>
+                {% if user.is_authenticated %}
+                <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>   
+                <span class="hello-msg">Hello, {{ request.user }}</span>
+                {% endif %}
+            </nav>
+        {% block content %}
         {% endblock %}
+        </div>
     </body>
 </html>
