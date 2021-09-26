@@ -1,0 +1,450 @@
+@font-face {
+    font-family: 'Metropolis';
+    src: url(fonts/Metropolis-Regular.otf);
+    font-style: normal;
+    font-weight: 100;
+}
+
+/* BASE TEMPLATE STYLING (NAVBAR & BACKGROUND)*/
+
+*{
+    padding:0;
+    margin: 0;
+}
+
+.wrapper{
+    background-color: #e8dccc ;
+    background-size: cover;
+    height: 300vh;
+}
+
+.navbar{
+    height: 80px;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+.logo{
+    float: left;
+    background: transparent;
+    width: 150px;
+    height: 80px;
+    padding: 0px 20px;
+}
+
+.navbar ul{
+    float:left;
+    margin-left: 20px;
+}
+
+.navbar ul li{
+    list-style: none;
+    margin: 0 20px;
+    display: inline-block;
+    line-height: 80px;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #202434 ;
+    font-size: 20px;
+    padding: 6px 13px;
+    transition: .4s;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.navbar ul li a.active,
+.navbar ul li a:hover{
+    background: rgb(190, 188, 188);
+    border-radius: 2px;
+}
+
+.wrapper .welcome{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Metropolis', sans-serif;
+    user-select: none;
+}
+
+.hello-msg{
+    font-size: 22px;
+    color:#202434;
+    float: right;
+    margin-right: 15px;
+    margin-top: 30px;
+    font-family: 'Metropolis', sans-serif;
+}
+
+
+/* HOME PAGE STYLING */
+
+.welcome h1{
+    color:#202434;
+    font-size: 70px;
+    font-weight: bold;
+    width: 900px;
+    text-align: center;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.welcome h2{
+    color:#202434;
+    font-family: 'Metropolis', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    width: 885;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.welcome .buttons{
+    margin: 35px 280px;
+}
+
+.buttons button{
+    height: 50px;
+    width: 150px;
+    background: #202434;
+    border: 1px solid white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+    
+}
+
+.buttons a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Metropolis', sans-serif;
+    color:#f3f3f3;
+}
+
+.buttons .btn{
+    margin-left: 25px;
+}
+
+/* INPUTS PAGE STYLING */
+
+.inputs-page{
+    float: left;
+    margin-left: 25px;
+    color:#202434;
+    text-align:left;
+    padding:10px 5px;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.inputs-page h2{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.inputs-page p{
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.inputs-button button{
+    height: 50px;
+    width: 150px;
+    background: #202434;
+    border: 1px solid white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+
+.inputs-button a{
+    text-decoration: none;
+    font-size: 18px;
+    color:#f3f3f3;
+    background: #202434;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.criteria-table{
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 0.8em;
+    min-width: 400px;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.criteria-table thead tr{
+    background-color: #202434;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.criteria-table th,
+.criteria-table td{
+    padding: 12px 15px;
+}
+
+.criteria-table tbody tr td{
+    line-height: 5px;
+    text-align: left;
+    border: 2px solid #000;
+    border-collapse: collapse;
+}
+
+
+.criteria-table tbody tr:nth-child(odd){
+    background-color: #f3f3f3;
+}
+
+.ONC-criteria{
+    background-color:#e8dccc;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* INSTRUCTION PAGE STYLING */
+
+.instructions{
+    float: left;
+    margin-left: 25px;
+    color:#202434;
+    text-align:left;
+    padding:10px 5px;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.instructions h2{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.instructions ol{
+    padding:6px 15px;
+}
+
+/* RESULTS PAGE STYLING */
+
+.results-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+}
+
+.results-table thead tr{
+    background-color: #202434;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.results-table th,
+.results-table td{
+    padding: 12px 15px;
+}
+
+.results-table tbody tr{
+    border-bottom: 1px solid rgb(122, 120, 120);
+}
+
+.results-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.results-table tbody tr:last-of-type{
+    border-bottom: 2px solid #202434;
+}
+
+.textdata{
+    text-align: left;
+}
+
+.results-button button{
+    height: 50px;
+    width: 150px;
+    background: #202434;
+    border: 1px solid white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.results-button a{
+    text-decoration: none;
+    font-size: 18px;
+    color:#f3f3f3;
+    background: #202434;
+    font-family: 'Metropolis', sans-serif;
+}
+
+.results-header{
+    color:#202434;
+    font-size: 25px;
+    font-weight: bold;
+    text-align:left;
+    padding:10px 2px;
+    text-decoration: underline;
+    font-family: 'Metropolis', sans-serif;
+}  
+
+/* LOGIN & REGISTER PAGE STYLING */
+
+.login {
+position: relative;
+margin: 30px auto;
+padding: 20px 20px 20px;
+width: 310px;
+background: white;
+border-radius: 3px;
+-webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login:before {
+content: '';
+position: absolute;
+top: -8px;
+right: -8px;
+bottom: -8px;
+left: -8px;
+z-index: -1;
+background: rgba(0, 0, 0, 0.08);
+border-radius: 4px;
+}
+
+.login h1 {
+margin: -20px -20px 21px;
+line-height: 40px;
+font-size: 15px;
+font-weight: bold;
+color: #555;
+text-align: center;
+text-shadow: 0 1px white;
+background: #f3f3f3;
+border-bottom: 1px solid #cfcfcf;
+border-radius: 3px 3px 0 0;
+background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+-webkit-box-shadow: 0 1px whitesmoke;
+box-shadow: 0 1px whitesmoke;
+}
+
+.login p {
+margin: 20px 0 0;
+}
+
+.login p:first-child {
+margin-top: 0;
+}
+
+.login input[type=text], .login input[type=password] {
+width: 278px;
+}
+
+.login p.remember_me {
+float: left;
+line-height: 31px;
+}
+
+.login p.remember_me label {
+font-size: 12px;
+color: #777;
+cursor: pointer;
+}
+
+.login p.remember_me input {
+position: relative;
+bottom: 1px;
+margin-right: 4px;
+vertical-align: middle;
+}
+
+.login p.submit {
+text-align: right;
+}
+
+.login-register{
+    text-align: center;
+    font-size: 15px;
+}
+
+.login-register a{
+    text-decoration: none;
+}
+
+:-moz-placeholder {
+color: #c9c9c9 !important;
+font-size: 13px;
+}
+
+::-webkit-input-placeholder {
+color: #ccc;
+font-size: 13px;
+}
+
+input {
+font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+font-size: 14px;
+}
+
+input[type=text], input[type=password] {
+margin: 5px;
+padding: 0 10px;
+width: 200px;
+height: 34px;
+color: #404040;
+background: white;
+border: 1px solid;
+border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+border-radius: 2px;
+outline: 5px solid #eff4f7;
+-moz-outline-radius: 3px;
+-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+input[type=text]:focus, input[type=password]:focus {
+border-color: #7dc9e2;
+outline-color: #dceefc;
+outline-offset: 0;
+}
+
+input[type=submit] {
+padding: 0 18px;
+height: 29px;
+font-size: 12px;
+font-weight: bold;
+color: #527881;
+text-shadow: 0 1px #e3f1f1;
+background: #cde5ef;
+border: 1px solid;
+border-color: #b4ccce #b3c0c8 #9eb9c2;
+border-radius: 16px;
+outline: 0;
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
+background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
+background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
+background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
+-webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+input[type=submit]:active {
+background: #202434;
+border-color: #9eb9c2 #b3c0c8 #b4ccce;
+-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.lt-ie9 input[type=text], .lt-ie9 input[type=password] {
+line-height: 34px;
+}

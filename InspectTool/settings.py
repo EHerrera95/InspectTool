@@ -29,9 +29,7 @@ SECRET_KEY = 'xlhlnx%)j0g3^macdn$9q+cd!=&7vba1lmblzj+o%ott#w)l*a'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ['VIT-env.eba-hpwpfedm.us-west-2.elasticbeanstalk.com']
 
-#'toolenv.eba-u6vimmv4.us-west-2.elasticbeanstalk.com'
 # Application definition
 
 INSTALLED_APPS = [
@@ -92,12 +90,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'mydatabase',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -135,7 +127,13 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static')
+)
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
