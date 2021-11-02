@@ -12,6 +12,7 @@
                 <ul>
                     <li><a class="active" href="{% url 'inputs' %}">Home</a></li>
                     <li><a href="{% url 'instructions' %}">How It Works</a></li>
+                    <li><a href="{% url 'guides' %}">Test Guides</a></li>
                 </ul>
                 {% if user.is_authenticated %}
                 <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>   

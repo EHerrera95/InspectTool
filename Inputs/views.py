@@ -16,6 +16,8 @@ import os.path
 
 # Create your views here.
 
+def guides(request):
+    return render(request, "Inputs/guides.html")
 
 def instructions(request):
     return render(request, "Inputs/instructions.html")

@@ -32,7 +32,7 @@
         </button>  
         
     </div>
-    <br>
+    {% comment %} <br>
     {% for u in uploads%}
     <div>
     <h2 class="results-header">Guide for {{u.criteria}}</h2>
@@ -47,5 +47,5 @@
 
         </table>
     </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 {% endblock %}
