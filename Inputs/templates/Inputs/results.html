@@ -16,7 +16,7 @@
             {% for oid_name, value in validation.final_dict.items %}
                 <tr>
                     <th><i></i>{{ oid_name}} </th>
-                    <td> {{ value.OID }} </td>
+                    <td> {{ value.LOINC }} </td>
                     {% if value.txt == null or value.txt == "" %}
                         <td> Nothing Found </td>
                     {% else%}
@@ -30,6 +30,22 @@
         <button >
             <a href="{% url 'inputs' %}">Back to Inputs</a>
         </button>  
+        
     </div>
+    <br>
+    {% for u in uploads%}
+    <div>
+    <h2 class="results-header">Guide for {{u.criteria}}</h2>
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Section Name</th>
+                    <th>LOINC Found</th>
+                    <th style="text-align:left">Text Data Found</th>
+                </tr>
+            </thead>
 
+        </table>
+    </div>
+    {% endfor %}
 {% endblock %}
