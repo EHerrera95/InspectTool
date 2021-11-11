@@ -32,7 +32,7 @@
         </button>  
         
     </div>
-    {% comment %} <br>
+    <br>
     {% for u in uploads%}
     <div>
     <h2 class="results-header">Guide for {{u.criteria}}</h2>
@@ -40,12 +40,21 @@
             <thead>
                 <tr>
                     <th>Section Name</th>
-                    <th>LOINC Found</th>
-                    <th style="text-align:left">Text Data Found</th>
+                    <th>LOINC Code</th>
+                    <th style="text-align:left">Narrative Text Data</th>
                 </tr>
             </thead>
-
+            <tbody>
+            {% load multifor %}
+                {% for oid_name, value in validation.final_dict.items; name in validation.LOINC_List ; i in validation.guide_list  %}
+                    <tr>
+                        <th><i></i>{{ oid_name}} </th>
+                        <td> {{ name }} </td>
+                        <td> {{ i}}</td>
+                    </tr> 
+                {% endfor %}
+            </tbody>
         </table>
     </div>
-    {% endfor %} {% endcomment %}
+    {% endfor %}
 {% endblock %}
