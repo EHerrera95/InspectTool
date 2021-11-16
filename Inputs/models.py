@@ -15,10 +15,14 @@ criteria_list = [
     ('b.1 Inpatient: Sample 2 - 2015e', 'b.1 Inpatient: Sample 2 - 2015e'),
     ('b.1 Inpatient: Sample 3 - 2015e', 'b.1 Inpatient: Sample 3 - 2015e'),
     ('b.1 Inpatient: Sample 3 - 2015e Cures', 'b.1 Inpatient: Sample 3 - 2015e Cures'),
-    ('2015E_b6_Ambulatory', '2015E_b6_Ambulatory'),
-    ('2015E_b6_Inpatient', '2015E_b6_Inpatient'),
-    ('2015E_b7_Ambulatory', '2015E_b7_Ambulatory'),
-    ('2015E_b7_Inpatient', '2015E_b7_Inpatient'),
+    ('b.2 Ambulatory: Sample 1 - R1.1 CCD - 2015e', 'b.2 Ambulatory: Sample 1 - R1.1 CCD - 2015e'),
+    ('b.2 Ambulatory: Sample 1 - R2.1 CCD - 2015e', 'b.2 Ambulatory: Sample 1 - R2.1 CCD - 2015e'),
+    ('b.2 Ambulatory: Sample 1 - R2.1 RN - 2015e', 'b.2 Ambulatory: Sample 1 - R2.1 RN - 2015e'),
+    ('b.2 Inpatient: Sample 1 - R2.1 DS - 2015e', 'b.2 Inpatient: Sample 1 - R2.1 DS - 2015e'),
+    ('b.7 Ambulatory: Sample 1 - 2015e', 'b.7 Ambulatory: Sample 1 - 2015e'),
+    ('b.7 Inpatient: Sample 1 - 2015e', 'b.7 Inpatient: Sample 1 - 2015e'),
+    ('b.9 Ambulatory: Sample 1 - 2015e', 'b.9 Ambulatory: Sample 1 - 2015e'),
+    ('b.9 Inpatient: Sample 1 - 2015e', 'b.9 Inpatient: Sample 1 - 2015e'),
     ('2015E_e1_Ambulatory', '2015E_e1_Ambulatory'),
     ('2015E_e1_Inpatient', '2015E_e1_Inpatient'),
     ('2015E_g9_Ambulatory', '2015E_g9_Ambulatory'),
@@ -43,8 +47,13 @@ values_dict = {
     "11506-3" : "Progress Note",
     "34117-2" : "History and Physical Note",
     "11488-4" : "Consultation Note",
-    "18842-5" : "Discharge Summary"
-}
+    "18842-5" : "Discharge Summary",
+    "48765-2" : "Allergies",
+    "10160-0" : "Medications",
+    "11450-4" : "Problems",
+    "11383-7" : "Health Status",
+    "62387-6" : "Interventions",
+    }
 
 # Table to hold information from Input Form
 class InputModel(models.Model):
@@ -72,6 +81,11 @@ class Validation():
     history_physical_note = "34117-2"
     consultation_note = "11488-4"
     discharge_summary = "18842-5"
+    allergies = "48765-2"
+    medications = "10160-0"
+    problems = "11450-4"
+    health_status = "11383-7"
+    interventions = "62387-6"
 
     final_dict = {} #Store all data in nested dictionary, used to pass information to results page table
                     #Nested dictionary format: { LOINC_CODE :{ SECTION_NAME , NARRATIVE_TEXT_FOUND }}
@@ -264,6 +278,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("No information")
     
+        # ISSUES WITH PROGRESSNOTE & Discharge Summary -> Epic has 8648-8 instead of 18842-5 & 10164-2 instead of 11506-3
         elif self.criteria == "b.1 Inpatient: Sample 3 - 2015e Cures":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr. Seven and his staff diagnosed the condition and treated Ms. Clarkson for Anemia during the 2 days stay at Community Health Hospitals. Ms. Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -285,46 +300,94 @@ class Validation():
             self.guide_list.append("Dr. Henry Seven after treating Ms. Jane Clarkson has seen considerable progress in her health in the two days that she was admitted to the hospital. The note was captured on June 24th 2020 at 11:00 am ET.")
             self.LOINC_List.append(self.discharge_summary)
             self.guide_list.append("Dr. Henry Seven has successfully discharged Ms. Jane Clarkson and has advised her to follow the diet recommendations. The patient was found to have Anemia and Dr. Seven and his staff diagnosed the condition and treated Ms. Clarkson for Anemia during the 2 days stay at Community Health Hospitals. Ms. Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency. The note was captured on June 24th 2020 at 11am ET.")
-        
-        elif self.criteria == "2015E_b6_Ambulatory":
-            self.LOINC_List.append(self.assessment)
-            self.LOINC_List.append(self.plan_of_treatment)
-            self.LOINC_List.append(self.assessment_and_plan)
-            self.LOINC_List.append(self.goals)
-            self.LOINC_List.append(self.health_concerns)
-            self.LOINC_List.append(self.reason_for_referral)
-            self.LOINC_List.append(self.functional_status)
-            self.LOINC_List.append(self.cognitive_status)
 
-        elif self.criteria == "2015E_b6_Inpatient":
+        elif self.criteria == "b.2 Ambulatory: Sample 1 - R1.1 CCD - 2015e":
+            self.LOINC_List.append(self.allergies)
+            self.guide_list.append("Codeine | Aspirin")
+            self.LOINC_List.append(self.medications)
+            self.guide_list.append("0.09 MG/ACTUAT inhalant solution, 2 puffs")
+            self.LOINC_List.append(self.problems)
+            self.guide_list.append("Pneumonia | Asthma")
+
+        elif self.criteria == "b.2 Ambulatory: Sample 1 - R2.1 CCD - 2015e":
+            self.LOINC_List.append(self.allergies)
+            self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
+            self.LOINC_List.append(self.medications)
+            self.guide_list.append("Certiaxone 100 mg/mL | Aranesp 0.5 mg/mL | Tylenol 500mg")
+            self.LOINC_List.append(self.problems)
+            self.guide_list.append("Fever | Overweight | Essential hypertension | Severe Hypothroidism | Chronic rejection of renal transplant")
+
+        elif self.criteria == "b.2 Ambulatory: Sample 1 - R2.1 RN - 2015e":
+            self.LOINC_List.append(self.allergies)
+            self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
+            self.LOINC_List.append(self.medications)
+            self.guide_list.append("Certiaxone 100 mg/mL | Aranesp 0.5 mg/mL | Tylenol 500mg")
+            self.LOINC_List.append(self.problems)
+            self.guide_list.append("Fever | Overweight | Essential hypertension | Severe Hypothroidism | Chronic rejection of renal transplant")
+
+        elif self.criteria == "b.2 Inpatient: Sample 1 - R2.1 DS - 2015e":
+            self.LOINC_List.append(self.allergies)
+            self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
+            self.LOINC_List.append(self.medications)
+            self.guide_list.append("Aranesp 0.5 mg/mL | Tylenol 500mg")
+            self.LOINC_List.append(self.problems)
+            self.guide_list.append("Essential hypertension | Iron deficiency anemia | Interstitial pneumonia | Overweight | Severe Hypothroidism | Chronic rejection of renal transplant")
+
+        # elif self.criteria == "b.6 Ambulatory: Sample 1 - 2015e ":
+        #     pass
+
+        elif self.criteria == "b.7 Ambulatory: Sample 1 - 2015e":
             self.LOINC_List.append(self.assessment)
+            self.guide_list.append("The patient was found to have fever and Dr. Davis is suspecting Anemia based on the patient history. So, Dr. Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
             self.LOINC_List.append(self.plan_of_treatment)
-            self.LOINC_List.append(self.assessment_and_plan)
+            self.guide_list.append("i. Get an EKG done on 6/23/2015 | ii. Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure. | iii. Take Clindamycin 300mg three times a day as needed if pain does not subside. | iv. Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015")
+            self.LOINC_List.append(self.assessment_and_plan)            
+            self.guide_list.append("ASSESSMENT: The patient was found to have fever and Dr. Davis is suspecting Anemia based on the patient history. So, Dr. Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day. | PLAN: i. Get an EKG done on 6/23/2015 | ii. Get a Chest X-ray done on 6/23/2015 showing the Lower Respiratory Tract Structure. | iii. Take Clindamycin 300mg three times a day as needed if pain does not subside. | iv. Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2015")
             self.LOINC_List.append(self.goals)
+            self.guide_list.append("a. Get rid of intermittent fever that is occurring every few weeks. | b. Need to gain more energy to do regular activities.")
             self.LOINC_List.append(self.health_concerns)
-            self.LOINC_List.append(self.discharge_instruction)
-            self.LOINC_List.append(self.functional_status)
-            self.LOINC_List.append(self.cognitive_status)
-        
-        elif self.criteria == "2015E_b7_Ambulatory":
-            self.LOINC_List.append(self.assessment)
-            self.LOINC_List.append(self.plan_of_treatment)
-            self.LOINC_List.append(self.assessment_and_plan)
-            self.LOINC_List.append(self.goals)
-            self.LOINC_List.append(self.health_concerns)
+            self.guide_list.append("a. Chronic sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented Hypertension problem | ii. Documented Hypothyroidism problem | iii. Watch weight of patient")
             self.LOINC_List.append(self.reason_for_referral)
+            self.guide_list.append("Ms. Alice Newman is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia.")
             self.LOINC_List.append(self.functional_status)
+            self.guide_list.append("Functional Condition: Dependence on Cane | Date: 5/1/2005")
             self.LOINC_List.append(self.cognitive_status)
+            self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
        
-        elif self.criteria == "2015E_b7_Inpatient":
+        elif self.criteria == "b.7 Inpatient: Sample 1 - 2015e":
             self.LOINC_List.append(self.assessment)
+            self.guide_list.append("The patient was found to have Anemia and Dr. Seven and his staff diagnosed the condition and treated Ms. Rebecca for Anemia during the 2 days stay at Community Health Hospitals. Ms. Rebecca recovered from Anemia during he stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
             self.LOINC_List.append(self.plan_of_treatment)
+            self.guide_list.append("Schedule an appointment with Dr. Seven after 1 week for Follow up with Outpatient facility for Immunosuppressive therapy.")
             self.LOINC_List.append(self.assessment_and_plan)
+            self.guide_list.append("ASSESSMENT: The patient was found to have Anemia and Dr. Seven and his staff diagnosed the condition and treated Ms. Rebecca for Anemia during the 2 days stay at Community Health Hospitals. Ms. Rebecca recovered from Anemia during he stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency. | PLAN: Schedule an appointment with Dr. Seven after 1 week for Follow up with Outpatient facility for Immunosuppressive therapy.")
             self.LOINC_List.append(self.goals)
+            self.guide_list.append("a. Need to gain more energy to do regular activities. | b. Negotiated Goal for Body Temperature at 98-99 degrees Fahreinheit with regular monitoring.")
             self.LOINC_List.append(self.health_concerns)
+            self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented Hypertension problem | ii. Documented Hypothyroidism problem | iii. Watch weight of patient | iv. Documented Anemia problem")
             self.LOINC_List.append(self.discharge_instruction)
+            self.guide_list.append("1. Diet: Diabetic low salt diet | 2. Medications: Take prescribed medication as advised | 3. Appointments: Schedule an appointment with Dr. Seven after 1 week. Follow up with Outpatient facility for Immunosuppression treatment. | 4. For Fever of > 101.5 F, or onset of chest pain/breathlessness contact Emergency.")
             self.LOINC_List.append(self.functional_status)
+            self.guide_list.append("Functional Condition: Dependence on Cane | Date: 5/1/2005")
             self.LOINC_List.append(self.cognitive_status)
+            self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
+
+        elif self.criteria == "b.9 Ambulatory: Sample 1 - 2015e":
+            self.LOINC_List.append(self.goals)
+            self.guide_list.append("a) Get rid of intermittent fever that is occurring every few weeks. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
+            self.LOINC_List.append(self.health_status)
+            self.guide_list.append("a) Outcome Observation #1: i. [Refers to Goal Observation for Weight] ii. [Refers to the Intervention Act #1] iii. [Progress Towards Goal of Weight - Goal Not Achieved as of 6/22/2015] | b) Outcome Observation #2: i. [Refers to Goal Observation for Body Temperature] ii. [Refers to Intervention Act #2] iii. [Progress Towards Goal of Body Temperature - Goal Achieved as of 6/24/2015")
+            self.LOINC_List.append(self.interventions)
+            self.guide_list.append("a) [Intervention Act #1:] i. Nutrition Recommendations: 1. Follow dietary regime as discussed, 182922004 - Dietary Regime (SNOMED-CT) 2. Read about nutrition as discussed, 61310001 - Nutrition Education procedure, (SNOMED-CT) iii. Refers to the Goal Observation for Body Temperature | b) [Intervention Act #2:] i. Refers to Medications entries. ii. Refers to Goal Observation for Body Temperature.")
+
+        elif self.criteria == "b.9 Inpatient: Sample 1 - 2015e":
+            self.LOINC_List.append(self.goals)
+            self.guide_list.append("a) Get rid of intermittent fever that is occurring every few weeks. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
+            self.LOINC_List.append(self.health_status)
+            self.guide_list.append("a) Outcome Observation #1: i. [Refers to Goal Observation for Weight] ii. [Refers to the Intervention Act #1] iii. [Progress Towards Goal of Weight - Goal Not Achieved as of 6/22/2015] | b) Outcome Observation #2: i. [Refers to Goal Observation for Body Temperature] ii. [Refers to Intervention Act #2] iii. [Progress Towards Goal of Body Temperature - Goal Achieved as of 6/24/2015")
+            self.LOINC_List.append(self.interventions)
+            self.guide_list.append("a) [Intervention Act #1:] i. Nutrition Recommendations: 1. Follow dietary regime as discussed, 182922004 - Dietary Regime (SNOMED-CT) 2. Read about nutrition as discussed, 61310001 - Nutrition Education procedure, (SNOMED-CT) iii. Refers to the Goal Observation for Body Temperature | b) [Intervention Act #2:] i. Refers to Medications entries. ii. Refers to Goal Observation for Body Temperature.")
+
 
         elif self.criteria == "2015E_e1_Ambulatory":
             self.LOINC_List.append(self.assessment)
@@ -410,6 +473,6 @@ class Validation():
                 temp_dict["txt"]= temp
             else:
                 temp_dict["LOINC"]= "Not Found"
-                temp_dict["txt"]= "Not Found"
+                temp_dict["txt"]= f"LOINCs found = {code_list}"
             #Add either found or not found data to final dictionary
             self.final_dict[i]=temp_dict.copy()
