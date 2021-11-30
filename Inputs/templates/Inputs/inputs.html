@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <div class="inputs-page">
-    <h2>Inputs:</h2>
+    <h2>Input Form:</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{form.criteria.label }}: {{ form.criteria}}</p>
@@ -103,7 +103,7 @@
             <td>Rebecca Larson</td>
         </tr>
         <tr>
-            <td class="ONC-criteria" rowspan=2>(b)(9): Care Plan**</td>
+            <td class="ONC-criteria" rowspan=2>(b)(9): Care Plan</td>
             <td>Ambulatory</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Karen McKiney</td>
