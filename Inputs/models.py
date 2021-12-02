@@ -49,19 +49,18 @@ criteria_list = [
     ('e.1 Inp: Sample 2 - 2015e', 'e.1 Inp: Sample 2 - 2015e'),
     ('e.1 Inp: Sample 1 - 2015e (Cures Update)', 'e.1 Inp: Sample 1 - 2015e (Cures Update)'),
     ('e.1 Inp: Sample 2 - 2015e (Cures Update)', 'e.1 Inp: Sample 2 - 2015e (Cures Update)'),
-    ('e.1 Amb: Sample 3 - 2015e (Cures Update)', 'e.1 Inp: Sample 3 - 2015e (Cures Update)'),
+    ('e.1 Inp: Sample 3 - 2015e (Cures Update)', 'e.1 Inp: Sample 3 - 2015e (Cures Update)'),
     # -----------g9 List-----------
     ('g.9 Amb: Sample 1 - 2015e', 'g.9 Amb: Sample 1 - 2015e'),
     ('g.9 Amb: Sample 2 - 2015e', 'g.9 Amb: Sample 2 - 2015e'),
     ('g.9 Amb: Sample 1 - 2015e (Cures Update)', 'g.9 Amb: Sample 1 - 2015e (Cures Update)'),
     ('g.9 Amb: Sample 2 - 2015e (Cures Update)', 'g.9 Amb: Sample 2 - 2015e (Cures Update)'),
     ('g.9 Amb: Sample 3 - 2015e (Cures Update)', 'g.9 Amb: Sample 3 - 2015e (Cures Update)'),
-
     ('g.9 Inp: Sample 1 - 2015e', 'g.9 Inp: Sample 1 - 2015e'),
     ('g.9 Inp: Sample 2 - 2015e', 'g.9 Inp: Sample 2 - 2015e'),
     ('g.9 Inp: Sample 1 - 2015e (Cures Update)', 'g.9 Inp: Sample 1 - 2015e (Cures Update)'),
     ('g.9 Inp: Sample 2 - 2015e (Cures Update)', 'g.9 Inp: Sample 2 - 2015e (Cures Update)'),
-    ('g.9 Amb: Sample 3 - 2015e (Cures Update)', 'g.9 Inp: Sample 3 - 2015e (Cures Update)'),
+    ('g.9 Inp: Sample 3 - 2015e (Cures Update)', 'g.9 Inp: Sample 3 - 2015e (Cures Update)'),
 ]
 
 # Defining a dictionary used as a reference to define in the final dictionary
