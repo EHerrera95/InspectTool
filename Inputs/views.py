@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import InputForm, CreateUserForm
-from .models import InputModel, Validation
+from .models import AllLogin, InputModel, Validation
 from django.core.files.storage import FileSystemStorage
 
 
@@ -31,6 +31,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
+            AllLogin.objects.create(user = request.user)
             return redirect('inputs')
         else:
             messages.info(request, 'Username OR Password is incorrect')

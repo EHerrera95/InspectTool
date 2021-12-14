@@ -1,8 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 import xml.etree.ElementTree as ET
-import os.path
 
+
+class AllLogin(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user) + ': ' + str(self.date)
 #List of Criteria used in tool
 criteria_list = [
     # -----------b1 List-----------
@@ -121,9 +129,9 @@ class Validation():
     interventions = "62387-6"
 
     final_dict = {} #Store all data in nested dictionary, used to pass information to results page table
-                    #Nested dictionary format: { LOINC_CODE :{ SECTION_NAME , NARRATIVE_TEXT_FOUND }}
+                    #Nested dictionary format: { SECTION_NAME  :{ LOINC_CODE :  NARRATIVE_TEXT_FOUND }}
     LOINC_List = []   #Store all LOINC codes assigned based on Input Form
-    guide_list = []
+    guide_list = [] 
 
     #Initialization class method called that 1) assigns the criteria selection and filepath from Input Form to class
     #2) then perform the assignVariables method based on criteria from form
