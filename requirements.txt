@@ -17,6 +17,7 @@ dj-database-url==0.5.0
 Django==3.0.8
 django-heroku==0.3.1
 django-multiforloop==0.3.1
+django-session-timeout==0.1.0
 django-storages==1.11.1
 docker==4.4.4
 docker-compose==1.25.5
