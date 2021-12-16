@@ -14,7 +14,7 @@ click==7.1.2
 colorama==0.4.3
 cryptography==3.4.7
 dj-database-url==0.5.0
-Django==3.0.8
+Django==3.1.14
 django-heroku==0.3.1
 django-multiforloop==0.3.1
 django-session-timeout==0.1.0
