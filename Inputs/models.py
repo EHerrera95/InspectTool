@@ -105,6 +105,13 @@ class InputModel(models.Model):
     def __str__(self):
         return f"{self.criteria} & {self.filename}"
 
+class IGModel(models.Model):
+    criteria = models.CharField(max_length=64, choices=criteria_list) #choices are form list defined above
+
+    def __str__(self):
+        return f"{self.criteria}"
+
+
 class Validation():
     #Initialize all possible LOINC codes for later assignment based on Input Form
     assessment = "51848-0"

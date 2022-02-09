@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import InputForm, CreateUserForm
+from .forms import InputForm, CreateUserForm, InspectionGuideForm
 from .models import AllLogin, InputModel, Validation
 from django.core.files.storage import FileSystemStorage
 
@@ -17,7 +17,17 @@ import os.path
 # Create your views here.
 
 def guides(request):
-    return render(request, "Inputs/guides.html")
+    if request.method == 'POST':
+        InputModel.objects.all().delete()
+        form = InspectionGuideForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('guides')
+    else:
+        form = InspectionGuideForm()
+    return render(request, "Inputs/guides.html", {
+        'form':form,
+    })
 
 def instructions(request):
     return render(request, "Inputs/instructions.html")
