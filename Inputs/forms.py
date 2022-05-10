@@ -2,17 +2,17 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import InputModel, IGModel
+from .models import InputModel, CuresInputModel
 
 class InputForm(forms.ModelForm):
     class Meta:
         model = InputModel
         fields = ['criteria', 'filename']
 
-class InspectionGuideForm(forms.ModelForm):
-     class Meta:
-        model = IGModel
-        fields = ['criteria']
+class CuresInputForm(forms.ModelForm):
+    class Meta:
+        model = CuresInputModel
+        fields = ['criteria', 'filename']
 
 
 class CreateUserForm(UserCreationForm): 

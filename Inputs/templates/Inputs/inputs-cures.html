@@ -3,14 +3,15 @@
 {% block content %}
 <br>
 <div class="inputs-page">
-    <h2>Inspection Guide Form:</h2>
+    <h2>Cures Update C-CDA R2.1:</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{form.criteria.label }}: {{ form.criteria}}</p>
+        <p>{{form.filename.label}}: {{ form.filename}}</p>
         <br>
         <div class="inputs-button">
             <button type="submit" class="btn btn-primary">
-                <a>View Guide</a>
+                <a>Start Inspection</a>
             </button>
         </div>
     </form>
@@ -169,3 +170,4 @@
     </tbody>
 </table>
 {% endblock %}
+

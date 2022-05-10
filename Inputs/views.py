@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import InputForm, CreateUserForm, InspectionGuideForm
-from .models import AllLogin, InputModel, Validation
+from .forms import InputForm, CuresInputForm, CreateUserForm
+from .models import AllLogin, InputModel, CuresInputModel, Validation
 from django.core.files.storage import FileSystemStorage
 
 
@@ -15,22 +15,8 @@ import os.path
 
 
 # Create your views here.
-
-def guides(request):
-    if request.method == 'POST':
-        InputModel.objects.all().delete()
-        form = InspectionGuideForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('guides')
-    else:
-        form = InspectionGuideForm()
-    return render(request, "Inputs/guides.html", {
-        'form':form,
-    })
-
-def instructions(request):
-    return render(request, "Inputs/instructions.html")
+def changes(request):
+    return render(request, "Inputs/changes.html")
 
 def loginPage(request):
     if request.method == 'POST':
@@ -42,12 +28,11 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             AllLogin.objects.create(user = request.user)
-            return redirect('inputs')
+            return redirect('inputCures')
         else:
             messages.info(request, 'Username OR Password is incorrect')
 
-    context = {}
-    return render(request, "Inputs/login.html", context)   
+    return render(request, "Inputs/login.html")   
 
 def registerPage(request):
     form = CreateUserForm()
@@ -67,9 +52,42 @@ def logoutUser(request):
     logout(request)
     return redirect('home')
 
-
 def home(request):
     return render(request, 'Inputs/home.html')
+
+@login_required(login_url='home')
+def inputsCures(request):
+    if request.method == 'POST':
+        CuresInputModel.objects.all().delete()
+        form = CuresInputForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect('resultsCures')
+    else:
+        form = CuresInputForm()
+    return render(request, "Inputs/inputs-cures.html", {
+        'form':form,
+    })
+
+@login_required(login_url='home')
+def resultsCures(request):
+    uploads = CuresInputModel.objects.all()
+    crit = uploads[0].criteria
+
+    path_string = uploads[0].filename
+    text = str(path_string)
+    file_type = text[-4:]
+    if file_type != '.xml':
+        print('ERROR')
+        return redirect('inputs')    #Needs alert to import correct file
+    else:
+        filepath = f'.//media/{uploads[0].filename}'
+        validation = Validation(crit,filepath)
+    
+    return render(request, "Inputs/results-cures.html", {
+        'uploads': uploads,
+        'validation': validation,
+    })
 
 @login_required(login_url='home')
 def inputs(request):
@@ -99,9 +117,8 @@ def results(request):
     else:
         filepath = f'.//media/{uploads[0].filename}'
         validation = Validation(crit,filepath)
-
     
     return render(request, "Inputs/results.html", {
         'uploads': uploads,
-        'validation': validation
+        'validation': validation,
     })

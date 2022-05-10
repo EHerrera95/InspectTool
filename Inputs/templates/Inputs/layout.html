@@ -6,19 +6,25 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     </head>
     <body>
+        <nav class="navbar">
+            <img class="logo" src="{% static 'images/dglogo.png' %}">
+            <ul class="nav-left">
+                <li><a class="active"href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'inputCures' %}">Cures Update</a></li>
+                <li><a href="{% url 'inputs' %}">C-CDA R2.1</a></li>
+            {% endif %}
+                {% comment %} <li><a href="{% url 'changes' %}">Changes</a></li> {% endcomment %}
+            </ul>
+            <ul class="nav-right">
+            {% if user.is_authenticated %}
+                <li>{{ request.user }}</li>    
+                <li><a style="text-decoration:underline; font-size:22px;" href="{% url 'logout' %}">Logout</a></li>        
+            {% endif %}
+                <li><i>v1.2.0</i></li>
+            </ul>
+        </nav>
         <div class="wrapper">
-            <nav class="navbar">
-                <img class="logo" src="{% static 'images/dglogo.png' %}">
-                <ul>
-                    <li><a class="active" href="{% url 'inputs' %}">Home</a></li>
-                    <li><a href="{% url 'instructions' %}">How It Works</a></li>
-                    <!-- <li><a href="{% url 'guides' %}">Inspection Guides</a></li> -->
-                </ul>
-                {% if user.is_authenticated %}
-                <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>   
-                <span class="hello-msg">Hello, {{ request.user }}</span>
-                {% endif %}
-            </nav>
         {% block content %}
         {% endblock %}
         </div>

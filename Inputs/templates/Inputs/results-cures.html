@@ -1,11 +1,11 @@
 {% extends 'Inputs/layout.html' %}
 
 {% block content %}
-{% for u in uploads %}
-<div class="results-header">
-    <a><b>Results for:</b> {{u.criteria}} <b>&</b> {{u.filename}} </a>
-</div>  
-{% endfor %}
+    {% for u in uploads %}
+    <div class="results-header">
+        <a><b>Results for:</b> {{u.criteria}} <b>&</b> {{u.filename}} </a>
+    </div>  
+    {% endfor %}
     <table class="results-table">
         <thead>
             <tr>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            {% load multifor %}
+        {% load multifor %}
             {% for oid_name, value in validation.final_dict.items; i in validation.guide_list %}
                 <tr>
                     <th rowspan=2><i></i>{{ oid_name}} </th>
@@ -35,7 +35,7 @@
     <div class="results-button">
         <div class="center">
             <button >
-                <a href="{% url 'inputs' %}">Back to Inputs</a>
+                <a href="{% url 'inputCures' %}">Back to Inputs</a>
             </button>  
         </div>   
     </div>

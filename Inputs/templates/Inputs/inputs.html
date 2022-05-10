@@ -3,7 +3,7 @@
 {% block content %}
 <br>
 <div class="inputs-page">
-    <h2>Input Form:</h2>
+    <h2>C-CDA R2.1:</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{form.criteria.label }}: {{ form.criteria}}</p>
@@ -27,8 +27,8 @@
     </thead>
     <tbody>
         <tr>
-            <td class="ONC-criteria" rowspan=6>(b)(1): Transitions of Care</td>
-            <td rowspan=3>Ambulatory</td>
+            <td class="ONC-criteria" rowspan=4>(b)(1): Transitions of Care</td>
+            <td rowspan=2>Ambulatory</td>
             <td>Sample 1: R2.1 - (CCD, RN)</td>
             <td>Alice Newman</td>
         </tr>
@@ -37,21 +37,13 @@
             <td>Jeremy Bates</td>
         </tr>
         <tr>
-            <td>Sample 3: R2.1 - (CCD, RN)</td>
-            <td>Happy Kid</td>
-        </tr>
-        <tr>
-            <td rowspan=3>Inpatient</td>
+            <td style="background-color: #e8dccc" rowspan=2>Inpatient</td>
             <td>Sample 1: R2.1 - (CCD, RN, DS)</td>
             <td>Rebecca Larson</td>
         </tr>
         <tr>
             <td>Sample 2: R2.1 - (CCD, RN, DS)</td>
             <td>John Wright</td>
-        </tr>
-        <tr>
-            <td>Sample 3: R2.1 - (CCD, RN, DS)</td>
-            <td>Jane Clarkson</td>
         </tr>
         <tr>
             <td class="ONC-criteria"  rowspan=4>(b)(2): Clinical Information Reconciliation</td>
@@ -72,8 +64,8 @@
             <td>Sample 1: R2.1 - (DS)</td>
             <td>Lauren Walker</td>
         </tr>
-        {% comment %} <tr>
-            <td class="ONC-criteria"  rowspan=4>(b)(6): Data Export</td>
+        <tr>
+            <td class="ONC-criteria"  rowspan=4>***(b)(6): Data Export</td>
             <td rowspan=2>Ambulatory</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Alice Newman</td>
@@ -90,7 +82,7 @@
         <tr>
             <td>Sample 2: R2.1 - (CCD)</td>
             <td>John Wright</td>
-        </tr> {% endcomment %}
+        </tr>
         <tr>
             <td class="ONC-criteria"  rowspan=2>(b)(7): Data Segmentation for Privacy - Send</td>
             <td>Ambulatory</td>
@@ -114,8 +106,8 @@
             <td>Sandra Glazer</td>
         </tr>
         <tr>
-            <td class="ONC-criteria"  rowspan=6>(e)(1): View/Download/Transmit</td>
-            <td rowspan=3>Ambulatory</td>
+            <td class="ONC-criteria"  rowspan=4>(e)(1): View/Download/Transmit</td>
+            <td rowspan=2>Ambulatory</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Alice Newman</td>
         </tr>
@@ -124,11 +116,7 @@
             <td>Jeremy Bates</td>
         </tr>
         <tr>
-            <td>Sample 3: R2.1 - (CCD)</td>
-            <td>Happy Kid</td>
-        </tr>
-        <tr>
-            <td rowspan=3>Inpatient</td>
+            <td style="background-color: #e8dccc" rowspan=2>Inpatient</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Rebecca Larson</td>
         </tr>
@@ -137,12 +125,8 @@
             <td>John Wright</td>
         </tr>
         <tr>
-            <td>Sample 3: R2.1 - (CCD)</td>
-            <td>Jane Clarkson</td>
-        </tr>
-        <tr>
-            <td class="ONC-criteria"  rowspan=6>(g)(9): Application Access - All Data Request</td>
-            <td rowspan=3>Ambulatory</td>
+            <td class="ONC-criteria"  rowspan=4>(g)(9): Application Access - All Data Request</td>
+            <td rowspan=2>Ambulatory</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Alice Newman</td>
         </tr>
@@ -151,21 +135,13 @@
             <td>Jeremy Bates</td>
         </tr>
         <tr>
-            <td>Sample 3: R2.1 - (CCD)</td>
-            <td>Happy Kid</td>
-        </tr>
-        <tr>
-            <td rowspan=3>Inpatient</td>
+            <td style="background-color: #e8dccc" rowspan=2>Inpatient</td>
             <td>Sample 1: R2.1 - (CCD)</td>
             <td>Rebecca Larson</td>
         </tr>
         <tr>
             <td>Sample 2: R2.1 - (CCD)</td>
             <td>John Wright</td>
-        </tr>
-        <tr>
-            <td>Sample 3: R2.1 - (CCD)</td>
-            <td>Jane Clarkson</td>
         </tr>
     </tbody>
 </table>
