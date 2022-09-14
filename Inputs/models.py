@@ -70,12 +70,12 @@ cures_criteria_list = [
     ('b.9c Inp - Sample 1 (v1)', 'b.9c Inp - Sample 1 (v1)'),
 
     # -----------e1 List-----------
-    ('e.1c Amb - Sample 1 (v2)', 'e.1c Amb - Sample 1 (v2)'),
-    ('e.1c Amb - Sample 2 (v2)', 'e.1c Amb - Sample 2 (v2)'),
-    ('e.1c Amb - Sample 3 (v6)', 'e.1c Amb - Sample 3 (v6)'),
-    ('e.1c Inp - Sample 1 (v3)', 'e.1c Inp - Sample 1 (v3)'),
-    ('e.1c Inp - Sample 2 (v2)', 'e.1c Inp - Sample 2 (v2)'),
-    ('e.1c Inp - Sample 3 (v7)', 'e.1c Inp - Sample 3 (v7)'),
+    ('e.1c Amb - Sample 1 (v3)', 'e.1c Amb - Sample 1 (v3)'),
+    ('e.1c Amb - Sample 2 (v3)', 'e.1c Amb - Sample 2 (v3)'),
+    ('e.1c Amb - Sample 3 (v7)', 'e.1c Amb - Sample 3 (v7)'),
+    ('e.1c Inp - Sample 1 (v4)', 'e.1c Inp - Sample 1 (v4)'),
+    ('e.1c Inp - Sample 2 (v3)', 'e.1c Inp - Sample 2 (v3)'),
+    ('e.1c Inp - Sample 3 (v8)', 'e.1c Inp - Sample 3 (v9)'),
  
     # -----------g9 List-----------
     ('g.9c Amb - Sample 1 (v2)', 'g.9c Amb - Sample 1 (v2)'),
@@ -127,6 +127,7 @@ class CuresInputModel(models.Model):
     def __str__(self):
         return f"{self.criteria} & {self.filename}"
 
+
 class Validation():
     #Initialize all possible LOINC codes for later assignment based on Input Form
     assessment = "51848-0"
@@ -171,7 +172,7 @@ class Validation():
         self.guide_list.clear()
 
         # ------------------------ b1 ------------------------
-            # -- v14 = UPDATED
+            # -- v14 
         if self.criteria == "b.1 Amb - Sample 1 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -190,7 +191,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "b.1 Amb - Sample 2 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
@@ -209,7 +210,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "b.1 Inp - Sample 1 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -228,7 +229,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
      
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "b.1 Inp - Sample 2 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
@@ -248,7 +249,7 @@ class Validation():
             self.guide_list.append("*OPTIONAL* No information")
 
         # ------------------------ b1 Cures ------------------------
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "b.1c Amb - Sample 1 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -273,7 +274,7 @@ class Validation():
             self.LOINC_List.append(self.progress_note)
             self.guide_list.append("Ms Alice Newman seems to be developing high fever and hence we recommend her to get admitted to a nearby hospital using the provided referral.")
 
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "b.1c Amb - Sample 2 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
@@ -294,7 +295,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v6 = UPDATED
+            # -- v6 
         elif self.criteria == "b.1c Amb - Sample 3 (v6)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have a fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -315,7 +316,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "b.1c Inp - Sample 1 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -340,7 +341,7 @@ class Validation():
             self.LOINC_List.append(self.progress_note)
             self.guide_list.append("Ms Rebecca Larson got admitted due to developing high fever and since has shown considerable improvement and can be discharged shortly.")
 
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "b.1c Inp - Sample 2 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
@@ -361,7 +362,7 @@ class Validation():
             self.LOINC_List.append(self.cognitive_status)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v7 = UPDATED
+            # -- v7 
         elif self.criteria == "b.1c Inp - Sample 3 (v7)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Clarkson for Anemia during the 2 day stay at Community Health Hospitals. Ms Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -386,7 +387,7 @@ class Validation():
 
 
         # ------------------------ b2  ------------------------
-            # -- v6 = UPDATED
+            # -- v6 
         elif self.criteria == "b.2 Amb/Inp - Sample 1 - R1.1 CCD (v6)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Codeine | Aspirin")
@@ -395,7 +396,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Pneumonia | Asthma")
 
-            # -- v7 = UPDATED
+            # -- v7 
         elif self.criteria == "b.2 Amb/Inp - Sample 1 - R2.1 CCD (v7)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
@@ -404,7 +405,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Fever | Essential HyperTension | Severe HypoThyroidism | Chronic rejection of renal transplant | Overweight (Resolved)")
 
-            # -- v7 = UPDATED
+            # -- v7 
         elif self.criteria == "b.2 Amb/Inp - Sample 1 - R2.1 RN (v7)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
@@ -413,7 +414,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Fever | Essential HyperTension | Severe HypoThyroidism | Chronic rejection of renal transplant | Overweight (Resolved)")
 
-            # -- v7 = UPDATED
+            # -- v7 
         elif self.criteria == "b.2 Inp - Sample 1 - R2.1 DS (v7)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
@@ -423,7 +424,7 @@ class Validation():
             self.guide_list.append("Essential HyperTension | Iron deficiency anemia | Interstitial pneumonia | Severe HypoThyroidism | Chronic rejection of renal transplant | Overweight (Resolved)")
        
         # ------------------------ b2 Cures ------------------------
-            # -- v6 = UPDATED
+            # -- v6 
         elif self.criteria == "b.2c Amb/Inp - Sample 1 - R1.1 CCD (v6)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Codeine | Aspirin")
@@ -432,7 +433,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Pneumonia | Asthma")
 
-            # -- v8 = UPDATED
+            # -- v8 
         elif self.criteria == "b.2c Amb/Inp - Sample 1 - R2.1 CCD (v8)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium | Product containing Benzodiazepine - Reaction: Allergic Headache")
@@ -441,7 +442,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Fever | Essential HyperTension | Severe HypoThyroidism | Chronic rejection of renal transplant | Overweight (Resolved)")
 
-            # -- v8 = UPDATED
+            # -- v8 
         elif self.criteria == "b.2c Amb/Inp - Sample 1 - R2.1 RN (v8)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium | Product containing Benzodiazepine - Reaction: Allergic Headache")
@@ -450,7 +451,7 @@ class Validation():
             self.LOINC_List.append(self.problems)
             self.guide_list.append("Fever | Essential HyperTension | Severe HypoThyroidism | Chronic rejection of renal transplant | Overweight (Resolved)")
 
-            # -- v8 = UPDATED
+            # -- v8 
         elif self.criteria == "b.2c Inp - Sample 1 - R2.1 DS (v8)":
             self.LOINC_List.append(self.allergies)
             self.guide_list.append("Penicillin G benzathine | Ampicillin Sodium")
@@ -465,7 +466,7 @@ class Validation():
         #     pass
 
         # ------------------------ b7 ------------------------
-            # -- v3 = UPDATED
+            # -- v3 
         elif self.criteria == "b.7 Amb - Sample 1 (v3)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -486,7 +487,7 @@ class Validation():
             self.LOINC_List.append(self.redisclosure)
             self.guide_list.append("'PROHIBITION ON REDISCLOSURE OF CONFIDENTIAL INFORMATION' This notice accompanies a disclosure of information concerning a client in alcohol/Drug treatment, made to you with the consent of such client. This information has been disclosed to you from records protected by federal confidentiality rules (42 C.F.R. Part 2). The federal rules prohibit you from making any further disclosure of this information unless further disclosure is expressly permitted by the written consent of the person to whom it pertains or as otherwise permitted by 42 C.F.R. Part 2. A general authorization for the release of medical or other information is NOT sufficient for this purpose. The federal rules restrict any use of the information to criminally investigate or prosecute any alcohol or Drug abuse patient.")
        
-            # -- v3 = UPDATED
+            # -- v3 
         elif self.criteria == "b.7 Inp - Sample 1 (v3)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -508,7 +509,7 @@ class Validation():
             self.guide_list.append("'PROHIBITION ON REDISCLOSURE OF CONFIDENTIAL INFORMATION' This notice accompanies a disclosure of information concerning a client in alcohol/Drug treatment, made to you with the consent of such client. This information has been disclosed to you from records protected by federal confidentiality rules (42 C.F.R. Part 2). The federal rules prohibit you from making any further disclosure of this information unless further disclosure is expressly permitted by the written consent of the person to whom it pertains or as otherwise permitted by 42 C.F.R. Part 2. A general authorization for the release of medical or other information is NOT sufficient for this purpose. The federal rules restrict any use of the information to criminally investigate or prosecute any alcohol or Drug abuse patient.")
 
         # ------------------------ b7 Cures ------------------------
-            # -- v1 = UPDATED
+            # -- v1 
         elif self.criteria == "b.7c Amb - Sample 1 (v1)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -523,7 +524,7 @@ class Validation():
             self.LOINC_List.append(self.redisclosure)
             self.guide_list.append("'PROHIBITION ON REDISCLOSURE OF CONFIDENTIAL INFORMATION' This notice accompanies a disclosure of information concerning a client in alcohol/Drug treatment, made to you with the consent of such client. This information has been disclosed to you from records protected by federal confidentiality rules (42 C.F.R. Part 2). The federal rules prohibit you from making any further disclosure of this information unless further disclosure is expressly permitted by the written consent of the person to whom it pertains or as otherwise permitted by 42 C.F.R. Part 2. A general authorization for the release of medical or other information is NOT sufficient for this purpose. The federal rules restrict any use of the information to criminally investigate or prosecute any alcohol or Drug abuse patient.")
    
-            # -- v1 = UPDATED
+            # -- v1 
         elif self.criteria == "b.7c Inp - Sample 1 (v1)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -541,7 +542,7 @@ class Validation():
             self.guide_list.append("'PROHIBITION ON REDISCLOSURE OF CONFIDENTIAL INFORMATION' This notice accompanies a disclosure of information concerning a client in alcohol/Drug treatment, made to you with the consent of such client. This information has been disclosed to you from records protected by federal confidentiality rules (42 C.F.R. Part 2). The federal rules prohibit you from making any further disclosure of this information unless further disclosure is expressly permitted by the written consent of the person to whom it pertains or as otherwise permitted by 42 C.F.R. Part 2. A general authorization for the release of medical or other information is NOT sufficient for this purpose. The federal rules restrict any use of the information to criminally investigate or prosecute any alcohol or Drug abuse patient.")
 
         # ------------------------ b9 ------------------------
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "b.9 Amb - Sample 1 (v14)":
             self.LOINC_List.append(self.goals)
             self.guide_list.append("a) Get rid of intermittent fever that is occurring every few weeks. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
@@ -552,7 +553,7 @@ class Validation():
             self.LOINC_List.append(self.interventions)
             self.guide_list.append("a) Intervention Act #1: i. Nutrition Recommendations: 1. Follow dietary regime as discussed  2. Read about nutrition as discussed | ii. [Refers to the Goal Observation for Weight] | b) [Intervention Act #2:] i. Refers to Medications entries. ii. Refers to Goal Observation for Body Temperature.")
 
-            # -- v15 = UPDATED
+            # -- v15 
         elif self.criteria == "b.9 Inp - Sample 1 (v15)":
             self.LOINC_List.append(self.goals)
             self.guide_list.append("a) Get rid of iron deficiency. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
@@ -566,7 +567,7 @@ class Validation():
             self.guide_list.append("a. Diet: Follow Nutrition recommendations | b. Medications: Take prescribed medication as advised | c. Appointments: Schedule an appointment with Dr Seven after 1 week. Follow up with Outpatient facility for Immunosuppression treatment. | d. For Fever of > 42 degree Celsius or onset of chest pain/breathlessness contact Emergency. | e. Come in once a month to get a checkup of your weight and iron deficiency.")
 
         # ------------------------ b9 Cures ------------------------
-            # -- v1 = UPDATED
+            # -- v1 
         elif self.criteria == "b.9c Amb - Sample 1 (v1)":
             self.LOINC_List.append(self.goals)
             self.guide_list.append("a) Get rid of intermittent fever that is occurring every few weeks. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
@@ -577,7 +578,7 @@ class Validation():
             self.LOINC_List.append(self.interventions)
             self.guide_list.append("a) Intervention Act #1: i. Nutrition Recommendations: 1. Follow dietary regime as discussed  2. Read about nutrition as discussed | ii. [Refers to the Goal Observation for Weight] | b) [Intervention Act #2:] i. Refers to Medications entries. ii. Refers to Goal Observation for Body Temperature.")
 
-            # -- v1 = UPDATED
+            # -- v1 
         elif self.criteria == "b.9c Inp - Sample 1 (v1)":
             self.LOINC_List.append(self.goals)
             self.guide_list.append("a) Get rid of iron deficiency. b) Need to gain more energy to do regular activities. c)[Negotiated Goal for Body Temperature 6/22/15] d) Keep weight under 95kg.")
@@ -591,7 +592,7 @@ class Validation():
             self.guide_list.append("a. Diet: Follow Nutrition recommendations | b. Medications: Take prescribed medication as advised | c. Appointments: Schedule an appointment with Dr Seven after 1 week. Follow up with Outpatient facility for Immunosuppression treatment. | d. For Fever of > 42 degree Celsius or onset of chest pain/breathlessness contact Emergency. | e. Come in once a month to get a checkup of your weight and iron deficiency.")
 
         # ------------------------ e1 ------------------------
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "e.1 Amb - Sample 1 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -608,7 +609,7 @@ class Validation():
             self.LOINC_List.append(self.diagnostic_lab)
             self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/23/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia.")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "e.1 Amb - Sample 2 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
@@ -625,7 +626,7 @@ class Validation():
             self.LOINC_List.append(self.diagnostic_lab)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "e.1 Inp - Sample 1 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -642,7 +643,7 @@ class Validation():
             self.LOINC_List.append(self.diagnostic_lab)
             self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/22/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia.")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == "e.1 Inp - Sample 2 (v14)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
@@ -661,8 +662,8 @@ class Validation():
 
 
         # ------------------------ e1 Cures ------------------------
-            # -- v2 = UPDATED
-        elif self.criteria == "e.1c Amb - Sample 1 (v2)":
+            # -- v3 
+        elif self.criteria == "e.1c Amb - Sample 1 (v3)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -673,19 +674,13 @@ class Validation():
             self.guide_list.append("a. Get rid of intermittent fever that is occurring every few weeks. | b. Need to gain more energy to do regular activities.")
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented HyperTension problem | ii. Documented HypoThyroidism problem | iii. Watch Weight of patient")
-            self.LOINC_List.append(self.reason_for_referral)
-            self.guide_list.append("Ms Alice Newman is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia.")
             self.LOINC_List.append(self.diagnostic_lab)
-            self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/23/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia. | Lab Note: Ms Alice Newman was tested for the Urinalysis macro panel and the results have been found to be normal.")
-            self.LOINC_List.append(self.functional_status)
-            self.guide_list.append("Functional Condition: Dependence on Cane | Date: 5/1/2005")
-            self.LOINC_List.append(self.cognitive_status)
-            self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
+            self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/23/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia. | Lab Note: Ms Alice Newman was tested for the Urinalysis macro panel and the results have been found to be normal. | Lab Location: a) id: 2.16.840.1.113883.19.5 b) Name: Value Labs c) Address: 2474 Rocky Place, Beaverton, OR 97-006")
             self.LOINC_List.append(self.procedures)
             self.guide_list.append("Dr Albert Davis examined Ms Alice Newman and found that the pacemaker is operating properly and the breathlessness is due to high fever and anxiety.")
            
-            # -- v2 = UPDATED
-        elif self.criteria == "e.1c Amb - Sample 2 (v2)":
+            # -- v3
+        elif self.criteria == "e.1c Amb - Sample 2 (v3)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -703,8 +698,8 @@ class Validation():
             self.LOINC_List.append(self.diagnostic_lab)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v6 = UPDATED
-        elif self.criteria == "e.1c Amb - Sample 3 (v6)":
+            # -- v7
+        elif self.criteria == "e.1c Amb - Sample 3 (v7)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -715,13 +710,11 @@ class Validation():
             self.guide_list.append("a. Get rid of intermittent fever that is occurring every few weeks. | b. Need to gain more energy to do regular activities.")
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented HyperTension problem")
-            self.LOINC_List.append(self.reason_for_referral)
-            self.guide_list.append("Ms Happy Kid is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia.")
             self.LOINC_List.append(self.consultation_note)
             self.guide_list.append("Dr Albert Davis diagnosed Ms Happy Kid to be suffering from Fever and suspected Pneumonia and recommended admission to the Community Health Hospitals. The note was captured on June 22nd 2020 at 11:00 am ET.")
 
-            # -- v3 = UPDATED
-        elif self.criteria == "e.1c Inp - Sample 1 (v3)":
+            # -- v4 
+        elif self.criteria == "e.1c Inp - Sample 1 (v4)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -734,19 +727,15 @@ class Validation():
             self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented HyperTension problem | ii. Documented HypoThyroidism problem | iii. Watch Weight of patient | iv. Documented Anemia problem")
             self.LOINC_List.append(self.discharge_instruction)
             self.guide_list.append("a. Diet: Diabetic low salt diet | b. Medications: Take prescribed medication as advised | c. Appointments: Schedule an appointment with Dr Seven after 1 week. Follow up with Outpatient facility for Immunosuppression treatment. | d. For Fever of > 101.5 F, or onset of chest pain/breathlessness contact Emergency.")
-            self.LOINC_List.append(self.functional_status)
-            self.guide_list.append("Functional Condition: Dependence on Cane | Date: 5/1/2005")
-            self.LOINC_List.append(self.cognitive_status)
-            self.guide_list.append("Cognitive Status: Amnesia | Date: 5/1/2005")
             self.LOINC_List.append(self.diagnostic_lab)
-            self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/22/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia. | Lab Note: Ms Rebecca Larson was tested for Urinalysis macro panel and CBC and the results have been found to be normal.")
+            self.guide_list.append("Diagnostic Imaging: Chest X-Rays: 2 Views on 6/22/15 - Lungs are not clear, cannot rule out Anemia. Other tests are required to determine the presence of Anemia. | Lab Note: Ms Rebecca Larson was tested for Urinalysis macro panel and CBC and the results have been found to be normal. | Lab Location: a) id: 2.16.840.1.113883.19.5 b) Name: Value Labs c) Address: 2474 Rocky Place, Beaverton, OR 97-006")
             self.LOINC_List.append(self.procedures)
             self.guide_list.append("Dr Seven examined Ms Rebecca Larson and found that the pacemaker is operating properly and the breathlessness is due to high fever and anxiety.")
             self.LOINC_List.append(self.progress_note)
             self.guide_list.append("Ms Rebecca Larson got admitted due to developing high fever and since has shown considerable improvement and can be discharged shortly.")
 
-            # -- v2 = UPDATED
-        elif self.criteria == "e.1c Inp - Sample 2 (v2)":
+            # -- v3
+        elif self.criteria == "e.1c Inp - Sample 2 (v3)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -761,15 +750,10 @@ class Validation():
             self.guide_list.append("*OPTIONAL* No information")
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("*OPTIONAL* No information")
-            self.LOINC_List.append(self.functional_status)
-            self.guide_list.append("*OPTIONAL* No information")
-            self.LOINC_List.append(self.cognitive_status)
-            self.guide_list.append("*OPTIONAL* No information")
-            self.LOINC_List.append(self.diagnostic_lab)
-            self.guide_list.append("*OPTIONAL* No information")
+
             
-            # -- v7 = UPDATED
-        elif self.criteria == "e.1c Inp - Sample 3 (v7)":
+            # -- v8 
+        elif self.criteria == "e.1c Inp - Sample 3 (v8)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Clarkson for Anemia during the 2 day stay at Community Health Hospitals. Ms Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
             self.LOINC_List.append(self.plan_of_treatment)
@@ -786,13 +770,9 @@ class Validation():
             self.guide_list.append("Dr Henry Seven after treating Ms Jane Clarkson has seen considerable progress in her health in the two days that she was admitted to the hospital. The note was captured on June 24th 2020 at 11:00 am ET.")
             self.LOINC_List.append(self.discharge_summary)
             self.guide_list.append("Dr Henry Seven has successfully discharged Ms Jane Clarkson and has advised her to follow the diet recommendations. The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Clarkson for Anemia during the 2 day stay at Community Health Hospitals. Ms Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency. The note was captured on June 24th 2020 at 11am ET.")
-            self.LOINC_List.append(self.functional_status)
-            self.guide_list.append("*OPTIONAL* No information")
-            self.LOINC_List.append(self.cognitive_status)
-            self.guide_list.append("*OPTIONAL* No information")
 
         # ------------------------ g9 ------------------------
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == 'g.9 Amb - Sample 1 (v14)':
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -805,7 +785,7 @@ class Validation():
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented HyperTension problem | ii. Documented HypoThyroidism problem | iii. Watch Weight of patient")
 
-            # -- v14 = UPDATED    
+            # -- v14     
         elif self.criteria == 'g.9 Amb - Sample 2 (v14)':
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
@@ -818,7 +798,7 @@ class Validation():
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v14 = UPDATED    
+            # -- v14     
         elif self.criteria == 'g.9 Inp - Sample 1 (v14)':
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -831,7 +811,7 @@ class Validation():
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("a. Chronic Sickness exhibited by patient | b. HealthCare Concerns refer to underlying clinical facts | i. Documented HyperTension problem | ii. Documented HypoThyroidism problem | iii. Watch Weight of patient | iv. Documented Anemia problem")
 
-            # -- v14 = UPDATED
+            # -- v14 
         elif self.criteria == 'g.9 Inp - Sample 2 (v14)':
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
@@ -845,7 +825,7 @@ class Validation():
             self.guide_list.append("*OPTIONAL* No information")
 
         # ------------------------ g9 Cures------------------------
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "g.9c Amb - Sample 1 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
@@ -864,7 +844,7 @@ class Validation():
             self.LOINC_List.append(self.progress_note)
             self.guide_list.append("Ms Alice Newman seems to be developing high fever and hence we recommend her to get admitted to a nearby hospital using the provided referral.")
             
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "g.9c Amb - Sample 2 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to be healthy and advised to follow his current routine of exercise, work, sleep and quality of life.")
@@ -879,9 +859,8 @@ class Validation():
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("*OPTIONAL* No information")
             
-            # -- v6 = UPDATED
+            # -- v6 
         elif self.criteria == "g.9c Amb - Sample 3 (v6)":
-            self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have a fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
             self.LOINC_List.append(self.plan_of_treatment)
             self.guide_list.append("i. Get an EKG done on 6/23/2020 | ii. Get a Chest X-ray done on 6/23/2020 showing the Lower Respiratory Tract Structure. | iii. Take Clindamycin 300mg three times a day as needed if pain does not subside. | iv. Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2020")
@@ -894,7 +873,7 @@ class Validation():
             self.LOINC_List.append(self.consultation_note)
             self.guide_list.append("Dr Albert Davis diagnosed Ms Happy Kid to be suffering from Fever and suspected Pneumonia and recommended admission to the Community Health Hospitals. The note was recorded on 22nd June at 11:00 am ET")
 
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "g.9c Inp - Sample 1 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Rebecca for Anemia during the 2 day stay at Community Health Hospitals. Ms Rebecca recovered from Anemia during the stay and is being discharged in a stable condition. If there is a fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")
@@ -915,7 +894,7 @@ class Validation():
             self.LOINC_List.append(self.progress_note)
             self.guide_list.append("Ms Rebecca Larson got admitted due to developing high fever and since has shown considerable improvement and can be discharged shortly.")
 
-            # -- v2 = UPDATED
+            # -- v2 
         elif self.criteria == "g.9c Inp - Sample 2 (v2)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient Mr John Wright was found to have first degree burns and Dr Seven and his staff treated Mr Wright by cleaning the burn and dressing the burn and observed for couple of hours before discharging Mr Wright.")
@@ -932,7 +911,7 @@ class Validation():
             self.LOINC_List.append(self.health_concerns)
             self.guide_list.append("*OPTIONAL* No information")
 
-            # -- v7 = UPDATED
+            # -- v7 
         elif self.criteria == "g.9c Inp - Sample 3 (v7)":
             self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have Anemia and Dr Seven and his staff diagnosed the condition and treated Ms Clarkson for Anemia during the 2 day stay at Community Health Hospitals. Ms Clarkson recovered from Anemia during the stay and is being discharged in a stable condition. If there is fever greater than 101.5 F or onset of chest pain/breathlessness the patient is advised to contact emergency.")

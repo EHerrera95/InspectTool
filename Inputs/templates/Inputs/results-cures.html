@@ -10,8 +10,8 @@
         <thead>
             <tr>
                 <th>Section Name </th>
-                <th>LOINC Found</th>
-                <th style="text-align:left">Text Data Found</th>
+                <th style="width: 110px;">LOINC Found</th>
+                <th>Text Data Found</th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +20,9 @@
                 <tr>
                     <th rowspan=2><i></i>{{ oid_name}} </th>
                 {% if value.LOINC == "Not Found" %}
-                    <td rowspan=2> <b>{{ value.LOINC }}</b> </td>
+                    <td style="text-align:center;" rowspan=2> <b>{{ value.LOINC }}</b> </td>
                 {% else %}
-                    <td rowspan=2> {{ value.LOINC }} </td>
+                    <td style="text-align:center;"rowspan=2> {{ value.LOINC }} </td>
                 {% endif %}
                     <td>{{ value.txt }}</td>
                 </tr> 

@@ -75,7 +75,7 @@ def resultsCures(request):
     crit = uploads[0].criteria
 
     path_string = uploads[0].filename
-    text = str(path_string)
+    text = str(path_string).lower()
     file_type = text[-4:]
     if file_type != '.xml':
         print('ERROR')
