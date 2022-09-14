@@ -1,38 +1,49 @@
-@font-face {
+/* @font-face {
     font-family: 'Metropolis';
     src: url(fonts/Metropolis-Regular.otf);
     font-style: normal;
     font-weight: 100;
-}
+} */
 
 /* BASE TEMPLATE STYLING (NAVBAR & BACKGROUND)*/
 
 *{
     padding:0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .wrapper{
     background-color: #e8dccc ;
-    background-size: cover;
-    min-height: 100vh; 
-    padding-bottom: 50px;
-    padding-top:10px;
+    width: 100vw;
+    margin: 0 auto;
+    min-height: calc(100vh - 107px - 77px);
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .navbar{
-    height: 80px;
-    width: 100%;
-    background: #8b847b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 8vh;
+    /* height: 80px;
+    width: 100%; */
+    background: #1e2637;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.logo{
-    float: left;
-    background: transparent;
-    width: 150px;
-    height: 80px;
-    padding: 0px 20px;
+footer{
+    text-align: center;
+    background-color: #1e2637;
+    color: #ffffff;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+
 }
+
 
 .navbar .nav-left{
     float:left;
@@ -48,11 +59,10 @@
 
 .navbar ul li a{
     text-decoration: none;
-    color: #202434 ;
+    color: #ffffff ;
     font-size: 22px;
     padding: 5px 7px;
     transition: .4s;
-    font-family: 'Metropolis', sans-serif;
 }
 
 .navbar ul li a.active,
@@ -66,10 +76,9 @@
     font-size: 22px;
     color:#202434;
     margin-right: 15px;
-    font-family: 'Metropolis', sans-serif;
 }
 
-.wrapper .welcome{
+.wrapper .home{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -78,12 +87,9 @@
     user-select: none;
 }
 
-
-
-
 /* HOME PAGE STYLING */
 
-.welcome h1{
+.home h1{
     color:#202434;
     font-size: 70px;
     font-weight: bold;
@@ -92,7 +98,7 @@
     font-family: 'Metropolis', sans-serif;
 }
 
-.welcome h2{
+.home h2{
     color:#202434;
     font-family: 'Metropolis', sans-serif;
     font-size: 30px;
@@ -102,8 +108,11 @@
     text-align: center;
 }
 
-.welcome .buttons{
-    margin: 35px 280px;
+.home .buttons{
+    /* margin: 35px 280px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttons button{
@@ -132,8 +141,8 @@
 /* INPUTS PAGE STYLING */
 
 .inputs-page{
-    float: left;
-    margin-left: 25px;
+    /* float: left;
+    margin-left: 25px; */
     color:#202434;
     text-align:left;
     padding:10px 5px;
@@ -144,6 +153,7 @@
     text-decoration: underline;
     font-weight: bold;
     font-size: 25px;
+    text-align: center;
 }
 
 .inputs-page p{
@@ -159,6 +169,7 @@
     outline: none;
     cursor: pointer;
     border-radius: 25px;
+    margin-left: 113px;
 }
 
 
@@ -203,7 +214,7 @@
 }
 
 .ONC-criteria{
-    background-color:#e8dccc;
+    /* background-color:#e8dccc; */
     font-weight: bold;
     text-align: center;
 }
@@ -237,6 +248,7 @@
     margin: 25px 25px;
     font-size: 0.9em;
     min-width: 400px;
+    
 }
 
 .results-table thead tr{
@@ -326,11 +338,11 @@
 /* LOGIN & REGISTER PAGE STYLING */
 
 .login {
-position: absolute;
+/* position: absolute;
 margin: 0;
 top:275px;
 left:50%;
-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%); */
 padding: 20px 20px 20px;
 width: 310px;
 background: white;
@@ -387,11 +399,11 @@ width: 278px;
 }
 
 .register {
-position: absolute;
+/* position: absolute;
 margin: 0;
 top:340px;
 left:50%;
-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%); */
 padding: 20px 20px 20px;
 width: 310px;
 background: white;

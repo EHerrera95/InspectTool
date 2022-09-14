@@ -13,7 +13,7 @@ urlpatterns = [
     # path("changes/", views.changes, name="changes"),
     path("login/", views.loginPage, name="login"),
     path("logout/", views.logoutUser, name="logout"),    
-    path("register/", views.registerPage, name="register")
+    # path("register/", views.registerPage, name="register")
 ]
 
 if settings.DEBUG:

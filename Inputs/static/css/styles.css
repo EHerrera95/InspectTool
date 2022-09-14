@@ -109,7 +109,10 @@ footer{
 }
 
 .home .buttons{
-    margin: 35px 280px;
+    /* margin: 35px 280px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttons button{
