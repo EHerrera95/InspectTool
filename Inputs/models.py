@@ -861,6 +861,7 @@ class Validation():
             
             # -- v6 
         elif self.criteria == "g.9c Amb - Sample 3 (v6)":
+            self.LOINC_List.append(self.assessment)
             self.guide_list.append("The patient was found to have a fever and Dr Davis is suspecting Anemia based on the patient history. So Dr Davis asked the patient to closely monitor the temperature and blood pressure and get admitted to Community Health Hospitals if the fever does not subside within a day.")
             self.LOINC_List.append(self.plan_of_treatment)
             self.guide_list.append("i. Get an EKG done on 6/23/2020 | ii. Get a Chest X-ray done on 6/23/2020 showing the Lower Respiratory Tract Structure. | iii. Take Clindamycin 300mg three times a day as needed if pain does not subside. | iv. Schedule follow on visit with Neighborhood Physicians Practice on 7/1/2020")
